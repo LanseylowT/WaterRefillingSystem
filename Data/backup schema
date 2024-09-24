@@ -1,0 +1,427 @@
+﻿create table if not exists customer
+(
+    customer_id      int auto_increment
+        primary key,
+    name             varchar(100)         not null,
+    contact          varchar(15)          null,
+    address          varchar(255)         null,
+    facebook_account varchar(255)         null,
+    is_dealer        tinyint(1) default 0 null
+);
+
+create table if not exists expense
+(
+    expense_id int auto_increment
+        primary key,
+    title      varchar(255)   not null,
+    amount     decimal(10, 2) null,
+    date       datetime       null
+);
+
+create table if not exists galloninventory
+(
+    inventory_id     int auto_increment
+        primary key,
+    customer_id      int           null,
+    owned_gallons    int default 0 null,
+    borrowed_gallons int default 0 null,
+    constraint galloninventory_ibfk_1
+        foreign key (customer_id) references customer (customer_id)
+            on update cascade on delete cascade
+);
+
+create index customer_id
+    on galloninventory (customer_id);
+
+create table if not exists itemtype
+(
+    item_id   int auto_increment
+        primary key,
+    item_name varchar(255) not null
+);
+
+create table if not exists paymentstatus
+(
+    status_id   int auto_increment
+        primary key,
+    status_name varchar(255) not null
+);
+
+create table if not exists serviceoption
+(
+    service_id   int auto_increment
+        primary key,
+    service_name varchar(255) not null
+);
+
+create table if not exists orders
+(
+    order_id          int auto_increment
+        primary key,
+    customer_id       int            null,
+    item_id           int            null,
+    service_id        int            null,
+    own_gallons       int default 0  null,
+    borrowed_gallons  int default 0  null,
+    total_price       decimal(10, 2) not null,
+    payment_status_id int default 1  null,
+    date              datetime       null,
+    constraint orders_ibfk_1
+        foreign key (customer_id) references customer (customer_id)
+            on update cascade on delete cascade,
+    constraint orders_ibfk_2
+        foreign key (item_id) references itemtype (item_id)
+            on update cascade,
+    constraint orders_ibfk_3
+        foreign key (service_id) references serviceoption (service_id)
+            on update cascade,
+    constraint orders_ibfk_4
+        foreign key (payment_status_id) references paymentstatus (status_id)
+            on update cascade
+);
+
+create index customer_id
+    on orders (customer_id);
+
+create index item_id
+    on orders (item_id);
+
+create index payment_status_id
+    on orders (payment_status_id);
+
+create index service_id
+    on orders (service_id);
+
+create table if not exists payment
+(
+    payment_id   int auto_increment
+        primary key,
+    order_id     int            null,
+    amount_paid  decimal(10, 2) not null,
+    payment_date datetime       null,
+    constraint payment_ibfk_1
+        foreign key (order_id) references orders (order_id)
+            on update cascade on delete cascade
+);
+
+create index order_id
+    on payment (order_id);
+
+create table if not exists sales
+(
+    sale_id      int auto_increment
+        primary key,
+    customer_id  int            null,
+    order_id     int            null,
+    date         datetime       null,
+    total_amount decimal(10, 2) null,
+    constraint sales_ibfk_1
+        foreign key (customer_id) references customer (customer_id)
+            on update cascade on delete cascade,
+    constraint sales_ibfk_2
+        foreign key (order_id) references orders (order_id)
+            on update cascade on delete cascade
+);
+
+create index customer_id
+    on sales (customer_id);
+
+create index order_id
+    on sales (order_id);
+
+create table if not exists useraccounts
+(
+    user_id       int auto_increment
+        primary key,
+    username      varchar(50)               not null,
+    password_hash varchar(255)              not null,
+    role          enum ('admin', 'cashier') not null,
+    constraint username
+        unique (username)
+);
+
+create
+    definer = root@localhost procedure AddCustomer(IN p_name varchar(100), IN p_contact varchar(15),
+                                                   IN p_address varchar(255), IN p_facebook_account varchar(255),
+                                                   IN p_is_dealer tinyint(1))
+BEGIN
+    INSERT INTO Customer (name, contact, address, facebook_account, is_dealer)
+    VALUES (p_name, p_contact, p_address, p_facebook_account, p_is_dealer);
+END;
+
+create
+    definer = root@localhost procedure AddExpense(IN p_title varchar(255), IN p_amount decimal(10, 2),
+                                                  IN p_date datetime)
+BEGIN
+    INSERT INTO Expense (Title, Amount, Date) VALUES (p_title, p_amount, p_date);
+END;
+
+create
+    definer = root@localhost procedure AddInventory(IN p_customer_id int, IN p_owned_gallons int, IN p_borrowed_gallons int)
+BEGIN
+    INSERT INTO GallonInventory (Customer_Id, Owned_Gallons, Borrowed_Gallons)
+    VALUES (p_customer_id, p_owned_gallons, p_borrowed_gallons);
+END;
+
+create
+    definer = root@localhost procedure AddItemType(IN p_item_name varchar(255))
+BEGIN
+    INSERT INTO ItemType (Item_Name) VALUES (p_item_name);
+END;
+
+create
+    definer = root@localhost procedure AddOrder(IN p_customer_id int, IN p_item_id int, IN p_service_id int,
+                                                IN p_own_gallons int, IN p_borrowed_gallons int,
+                                                IN p_total_price decimal(10, 2), IN p_payment_status_id int,
+                                                IN p_date datetime)
+BEGIN
+    INSERT INTO Orders (customer_id, item_id, service_id, own_gallons, borrowed_gallons, total_price, payment_status_id, date)
+    VALUES (p_customer_id, p_item_id, p_service_id, p_own_gallons, p_borrowed_gallons, p_total_price, p_payment_status_id, p_date);
+END;
+
+create
+    definer = root@localhost procedure AddPayment(IN p_order_id int, IN p_amount_paid decimal(10, 2),
+                                                  IN p_payment_date datetime)
+BEGIN
+    INSERT INTO payment (order_id, amount_paid, payment_date)
+    VALUES (p_order_id, p_amount_paid, p_payment_date);
+END;
+
+create
+    definer = root@localhost procedure AddPaymentStatus(IN p_status_name varchar(255))
+BEGIN
+    INSERT INTO PaymentStatus (status_name)
+    VALUES (p_status_name);
+END;
+
+create
+    definer = root@localhost procedure AddSale(IN p_customer_id int, IN p_order_id int,
+                                               IN p_total_amount decimal(10, 2), IN p_date datetime)
+BEGIN
+    INSERT INTO Sales (Customer_Id, Order_Id, Total_Amount, Date)
+    VALUES (p_customer_id, p_order_id, p_total_amount, p_date);
+END;
+
+create
+    definer = root@localhost procedure DeleteCustomer(IN p_customer_id int)
+BEGIN
+    DELETE FROM Customer WHERE customer_id = p_customer_id;
+END;
+
+create
+    definer = root@localhost procedure DeleteExpense(IN p_expense_id int)
+BEGIN
+    DELETE FROM Expense WHERE Expense_Id = p_expense_id;
+END;
+
+create
+    definer = root@localhost procedure DeleteInventory(IN p_inventory_id int)
+BEGIN
+    DELETE FROM GallonInventory WHERE Inventory_Id = p_inventory_id;
+END;
+
+create
+    definer = root@localhost procedure DeleteItemType(IN p_item_id int)
+BEGIN
+    DELETE FROM ItemType WHERE Item_Id = p_item_id;
+END;
+
+create
+    definer = root@localhost procedure DeleteOrder(IN p_order_id int)
+BEGIN
+    DELETE FROM Orders WHERE order_id = p_order_id;
+END;
+
+create
+    definer = root@localhost procedure DeletePayment(IN p_payment_id int)
+BEGIN
+    DELETE FROM Payment WHERE Payment_Id = p_payment_id;
+END;
+
+create
+    definer = root@localhost procedure DeletePaymentStatus(IN p_status_id int)
+BEGIN
+    DELETE FROM PaymentStatus WHERE status_id = p_status_id;
+END;
+
+create
+    definer = root@localhost procedure DeleteSale(IN p_sale_id int)
+BEGIN
+    DELETE FROM Sales WHERE Sale_Id = p_sale_id;
+END;
+
+create
+    definer = root@localhost procedure GetAllCustomers()
+BEGIN
+    SELECT * FROM Customer;
+END;
+
+create
+    definer = root@localhost procedure GetAllExpenses()
+BEGIN
+    SELECT * FROM Expense;
+END;
+
+create
+    definer = root@localhost procedure GetAllGallonInventory()
+BEGIN
+    SELECT * FROM GallonInventory;
+END;
+
+create
+    definer = root@localhost procedure GetAllItemTypes()
+BEGIN
+    SELECT * FROM ItemType;
+END;
+
+create
+    definer = root@localhost procedure GetAllOrders()
+BEGIN
+    SELECT * FROM Orders;
+END;
+
+create
+    definer = root@localhost procedure GetAllPaymentStatuses()
+BEGIN
+    SELECT * FROM PaymentStatus;
+END;
+
+create
+    definer = root@localhost procedure GetAllPayments()
+BEGIN
+    SELECT * FROM Payment;
+END;
+
+create
+    definer = root@localhost procedure GetAllSales()
+BEGIN
+    SELECT * FROM Sales;
+END;
+
+create
+    definer = root@localhost procedure GetCustomerById(IN p_customer_id int)
+BEGIN
+    SELECT * FROM Customer WHERE customer_id = p_customer_id;
+END;
+
+create
+    definer = root@localhost procedure GetExpenseById(IN p_expense_id int)
+BEGIN
+    SELECT * FROM Expense WHERE Expense_Id = p_expense_id;
+END;
+
+create
+    definer = root@localhost procedure GetInventoryByCustomerId(IN p_customer_id int)
+BEGIN
+    SELECT * FROM GallonInventory WHERE Customer_Id = p_customer_id;
+END;
+
+create
+    definer = root@localhost procedure GetItemTypeById(IN p_item_id int)
+BEGIN
+    SELECT * FROM ItemType WHERE Item_Id = p_item_id;
+END;
+
+create
+    definer = root@localhost procedure GetOrdersByCustomerId(IN p_customer_id int)
+BEGIN
+    SELECT * FROM Orders WHERE customer_id = p_customer_id;
+END;
+
+create
+    definer = root@localhost procedure GetOrdersByPaymentStatus(IN p_payment_status varchar(50))
+BEGIN
+    SELECT * FROM Orders WHERE payment_status_id = (SELECT status_id FROM PaymentStatus WHERE status_name = p_payment_status);
+END;
+
+create
+    definer = root@localhost procedure GetPaymentStatusById(IN p_status_id int)
+BEGIN
+    SELECT * FROM PaymentStatus WHERE status_id = p_status_id;
+END;
+
+create
+    definer = root@localhost procedure GetPaymentsByOrder(IN p_order_id int)
+BEGIN
+    SELECT * FROM Payment WHERE Order_Id = p_order_id;
+END;
+
+create
+    definer = root@localhost procedure GetSalesByCustomerId(IN p_customer_id int)
+BEGIN
+    SELECT * FROM Sales WHERE Customer_Id = p_customer_id;
+END;
+
+create
+    definer = root@localhost procedure UpdateCustomer(IN p_customer_id int, IN p_name varchar(100),
+                                                      IN p_contact varchar(15), IN p_address varchar(255),
+                                                      IN p_facebook_account varchar(255), IN p_is_dealer tinyint(1))
+BEGIN
+    UPDATE Customer
+    SET name = p_name, contact = p_contact, address = p_address, facebook_account = p_facebook_account, is_dealer = p_is_dealer
+    WHERE customer_id = p_customer_id;
+END;
+
+create
+    definer = root@localhost procedure UpdateExpense(IN p_expense_id int, IN p_title varchar(255),
+                                                     IN p_amount decimal(10, 2), IN p_date datetime)
+BEGIN
+    UPDATE Expense
+    SET Title = p_title, Amount = p_amount, Date = p_date
+    WHERE Expense_Id = p_expense_id;
+END;
+
+create
+    definer = root@localhost procedure UpdateInventory(IN p_inventory_id int, IN p_customer_id int,
+                                                       IN p_owned_gallons int, IN p_borrowed_gallons int)
+BEGIN
+    UPDATE GallonInventory
+    SET Customer_Id = p_customer_id, Owned_Gallons = p_owned_gallons, Borrowed_Gallons = p_borrowed_gallons
+    WHERE Inventory_Id = p_inventory_id;
+END;
+
+create
+    definer = root@localhost procedure UpdateItemType(IN p_item_id int, IN p_item_name varchar(255))
+BEGIN
+    UPDATE ItemType
+    SET Item_Name = p_item_name
+    WHERE Item_Id = p_item_id;
+END;
+
+create
+    definer = root@localhost procedure UpdateOrder(IN p_order_id int, IN p_customer_id int, IN p_item_id int,
+                                                   IN p_service_id int, IN p_own_gallons int, IN p_borrowed_gallons int,
+                                                   IN p_total_price decimal(10, 2), IN p_payment_status_id int,
+                                                   IN p_date datetime)
+BEGIN
+    UPDATE Orders
+    SET customer_id = p_customer_id, item_id = p_item_id, service_id = p_service_id, own_gallons = p_own_gallons, borrowed_gallons = p_borrowed_gallons, total_price = p_total_price, payment_status_id = p_payment_status_id, date = p_date
+    WHERE order_id = p_order_id;
+END;
+
+create
+    definer = root@localhost procedure UpdatePayment(IN p_payment_id int, IN p_order_id int,
+                                                     IN p_amount_paid decimal(10, 2), IN p_payment_date datetime)
+BEGIN
+    UPDATE Payment
+    SET Order_Id = p_order_id, Amount_Paid = p_amount_paid, Payment_Date = p_payment_date
+    WHERE Payment_Id = p_payment_id;
+END;
+
+create
+    definer = root@localhost procedure UpdatePaymentStatus(IN p_status_id int, IN p_status_name varchar(255))
+BEGIN
+    UPDATE PaymentStatus
+    SET status_name = p_status_name
+    WHERE status_id = p_status_id;
+END;
+
+create
+    definer = root@localhost procedure UpdateSale(IN p_sale_id int, IN p_customer_id int, IN p_order_id int,
+                                                  IN p_total_amount decimal(10, 2), IN p_date datetime)
+BEGIN
+    UPDATE Sales
+    SET Customer_Id = p_customer_id, Order_Id = p_order_id, Total_Amount = p_total_amount, Date = p_date
+    WHERE Sale_Id = p_sale_id;
+END;
+
