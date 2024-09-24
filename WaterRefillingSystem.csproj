@@ -219,13 +219,10 @@
     <EmbeddedResource Include="Resources\Icons\close.png" />
     <EmbeddedResource Include="Resources\Icons\maximize.png" />
     <EmbeddedResource Include="Resources\Icons\minimize.png" />
-    <Content Include="Resources\close.png" />
     <Content Include="Resources\Icons\screw.png" />
     <Content Include="Resources\Images\Login.png" />
     <Content Include="Resources\Images\Login2.png" />
     <Content Include="Resources\Login.png" />
-    <Content Include="Resources\maximize.png" />
-    <Content Include="Resources\minimize.png" />
     <Content Include="Resources\SVG\Login.svg" />
   </ItemGroup>
   <ItemGroup>
