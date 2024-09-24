@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace WaterRefillingSystem.Views
 {
@@ -7,6 +8,11 @@ namespace WaterRefillingSystem.Views
         public Dashboard()
         {
             InitializeComponent();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
