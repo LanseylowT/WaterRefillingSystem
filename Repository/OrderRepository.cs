@@ -10,10 +10,17 @@ namespace WaterRefillingSystem.Repository
     public class OrderRepository : BaseRepository<Order>
     {
         private readonly CustomerRepository _customerRepository;
+        private readonly ItemTypeRepository _itemTypeRepository;
+        private readonly PaymentStatusRepository _paymentStatusRepository;
+        private readonly ServiceOptionRepository _serviceOptionRepository;
+        
 
         public OrderRepository(string connectionString) : base(connectionString)
         {
             _customerRepository = new CustomerRepository(connectionString);
+            _itemTypeRepository = new ItemTypeRepository(connectionString);
+            _paymentStatusRepository = new PaymentStatusRepository(connectionString);
+            _serviceOptionRepository = new ServiceOptionRepository(connectionString);
         }
 
         protected override async Task<Order> MapReaderToEntityAsync(MySqlDataReader reader)
@@ -33,6 +40,8 @@ namespace WaterRefillingSystem.Repository
 
             // Fetch and set the Customer
             order.Customer = await _customerRepository.GetCustomerByIdAsyncSP(order.CustomerId);
+            order.ItemType = await _itemTypeRepository.GetItemTypeByIdAsyncSP(order.ItemId);
+            order.PaymentStatus = await _paymentStatusRepository.GetPaymentStatusByIdAsyncSP(order.PaymentStatusId);
 
             return order;
         }

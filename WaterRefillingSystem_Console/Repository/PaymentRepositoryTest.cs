@@ -24,9 +24,9 @@ namespace WaterRefilling_Console.Repository
             Console.WriteLine("\n\n");
             
             // Uncomment the test we want to run
-            // await AddNewPaymentTest(paymentRepository);
+            await AddNewPaymentTest(paymentRepository);
             // await UpdatePaymentTest(paymentRepository);
-            await DeletePaymentTest(paymentRepository);
+            // await DeletePaymentTest(paymentRepository);
             
             // Print the customers again to see the updates
             payments = await paymentRepository.GetAllPaymentsAsyncSP();
@@ -39,8 +39,8 @@ namespace WaterRefilling_Console.Repository
             var newPayment = new Payment
             {
                 PaymentDate = DateTime.Now,
-                AmountPaid = 500.0m,
-                OrderId = 2
+                AmountPaid = 300.0m,
+                OrderId = 1
             };
             await paymentRepository.AddPaymentAsyncSP(newPayment);
             Console.WriteLine("Payment Added Successfully");

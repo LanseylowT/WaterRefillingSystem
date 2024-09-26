@@ -169,6 +169,12 @@
     <Compile Include="Views\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\DashboardTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DashboardTest.Designer.cs">
+      <DependentUpon>DashboardTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +196,9 @@
     </Compile>
     <EmbeddedResource Include="Views\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DashboardTest.resx">
+      <DependentUpon>DashboardTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
@@ -219,10 +228,21 @@
     <EmbeddedResource Include="Resources\Icons\close.png" />
     <EmbeddedResource Include="Resources\Icons\maximize.png" />
     <EmbeddedResource Include="Resources\Icons\minimize.png" />
-    <Content Include="Resources\Icons\screw.png" />
+    <EmbeddedResource Include="Resources\Icons\screw.png" />
+    <Content Include="Resources\bell1.png" />
+    <Content Include="Resources\close.png" />
+    <Content Include="Resources\bell.png" />
+    <Content Include="Resources\profile_picture_2.png" />
+    <Content Include="Resources\profile_picture.png" />
+    <Content Include="Resources\Icons\search2.png" />
+    <Content Include="Resources\Icons\search.png" />
     <Content Include="Resources\Images\Login.png" />
     <Content Include="Resources\Images\Login2.png" />
     <Content Include="Resources\Login.png" />
+    <Content Include="Resources\profile_picture1.png" />
+    <Content Include="Resources\screw.png" />
+    <Content Include="Resources\search.png" />
+    <Content Include="Resources\search2.png" />
     <Content Include="Resources\SVG\Login.svg" />
   </ItemGroup>
   <ItemGroup>

@@ -27,7 +27,7 @@ namespace WaterRefilling_Console
             GallonInventoryRepositoryTest inventoryTest = new GallonInventoryRepositoryTest();
             SalesRepositoryTest salesTest = new SalesRepositoryTest();
             PaymentStatusRepositoryTest paymentStatusTest = new PaymentStatusRepositoryTest();
-            await paymentStatusTest.PaymentStatusTest();
+            await paymentTest.PaymentTest();
 
         } 
 

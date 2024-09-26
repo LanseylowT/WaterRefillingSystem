@@ -17,9 +17,9 @@ namespace WaterRefillingSystem.Models
 
         // Navigation properties
         public Customer Customer { get; set; }           // Linked Customer
-        public ItemType Item { get; set; }               // Linked ItemType
+        public ItemType ItemType { get; set; }               // Linked ItemType
         public ServiceOption ServiceOption { get; set; } // Linked ServiceOption
         public PaymentStatus PaymentStatus { get; set; } // Linked PaymentStatus
-        public List<Payment> Payments { get; set; } = new List<Payment>(); // Linked payments
+        public List<Payment> Payment { get; set; } = new List<Payment>(); // Linked payments
     }
 }
