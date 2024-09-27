@@ -17,7 +17,7 @@ namespace WaterRefillingSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DashboardTest()); 
+            Application.Run(new AddCustomer()); 
         }
     }
 }

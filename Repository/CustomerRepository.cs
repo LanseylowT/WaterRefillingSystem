@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using WaterRefillingSystem.Models;
@@ -61,8 +62,7 @@ namespace WaterRefillingSystem.Repository
                 {
                     new MySqlParameter("p_customer_id", customerId)
                 });
-
-
+        
 
         // Using stored procedure for fetching a customer by ID
         public Task<Customer> GetCustomerByIdAsyncSP(int customerId) =>
@@ -71,5 +71,31 @@ namespace WaterRefillingSystem.Repository
                 {
                     new MySqlParameter("p_customer_id", customerId)
                 });
+
+        public async Task<List<Customer>> FilterCustomerAsyncSP(string filterBy, string searchValue)
+        {
+            var customers = new List<Customer>();
+
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                await conn.OpenAsync();
+                using (MySqlCommand cmd = new MySqlCommand("FilterCustomers", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("filterBy", filterBy);
+                    cmd.Parameters.AddWithValue("searchValue", searchValue);
+
+                    using (MySqlDataReader reader = (MySqlDataReader)await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            customers.Add(await MapReaderToEntityAsync(reader));  // Ensure MySqlDataReader is expected here
+                        }
+                    }
+                }
+            }
+
+            return customers;
+        }
     }
 }

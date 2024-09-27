@@ -163,6 +163,12 @@
     <Compile Include="Services\AuthenticationServices.cs" />
     <Compile Include="Services\FontManager.cs" />
     <Compile Include="Services\UTodos.cs" />
+    <Compile Include="Views\AddCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddCustomer.Designer.cs">
+      <DependentUpon>AddCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomerTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +206,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\AddCustomer.resx">
+      <DependentUpon>AddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CustomerTest.resx">
+      <DependentUpon>CustomerTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
