@@ -230,6 +230,7 @@
             this.btnNewCustomer.TextMarginLeft = 0;
             this.btnNewCustomer.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnNewCustomer.UseDefaultRadiusAndThickness = true;
+            this.btnNewCustomer.Click += new System.EventHandler(this.btnNewCustomer_Click);
             // 
             // btnReturnGallon
             // 
@@ -412,6 +413,7 @@
             this.btnOrder.TextMarginLeft = 0;
             this.btnOrder.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnOrder.UseDefaultRadiusAndThickness = true;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
             // 
             // bunifuPanel1
             // 

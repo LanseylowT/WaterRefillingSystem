@@ -72,6 +72,12 @@
             this.lblCount = new Bunifu.UI.WinForms.BunifuLabel();
             this.dtgCustomerView = new System.Windows.Forms.DataGridView();
             this.bunifuLabel2 = new Bunifu.UI.WinForms.BunifuLabel();
+            this.bunifuLabel3 = new Bunifu.UI.WinForms.BunifuLabel();
+            this.bunifuLabel4 = new Bunifu.UI.WinForms.BunifuLabel();
+            this.bunifuLabel5 = new Bunifu.UI.WinForms.BunifuLabel();
+            this.bunifuLabel6 = new Bunifu.UI.WinForms.BunifuLabel();
+            this.bunifuLabel7 = new Bunifu.UI.WinForms.BunifuLabel();
+            this.lblErrorMessage = new Bunifu.UI.WinForms.BunifuLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCustomerItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCustomerView)).BeginInit();
             this.SuspendLayout();
@@ -164,6 +170,7 @@
             this.btnSave.TextMarginLeft = 0;
             this.btnSave.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnSave.UseDefaultRadiusAndThickness = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnEdit
             // 
@@ -347,6 +354,7 @@
             // 
             this.bunifuLabel1.AllowParentOverrides = false;
             this.bunifuLabel1.AutoEllipsis = false;
+            this.bunifuLabel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.bunifuLabel1.CursorType = System.Windows.Forms.Cursors.Default;
             this.bunifuLabel1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bunifuLabel1.Location = new System.Drawing.Point(791, 29);
@@ -398,6 +406,7 @@
             this.cmbFilter.Name = "cmbFilter";
             this.cmbFilter.Size = new System.Drawing.Size(260, 32);
             this.cmbFilter.TabIndex = 4;
+            this.cmbFilter.Text = null;
             this.cmbFilter.TextAlignment = Bunifu.UI.WinForms.BunifuDropdown.TextAlign.Left;
             this.cmbFilter.TextLeftMargin = 5;
             // 
@@ -514,7 +523,7 @@
             this.txtCustomerName.IconRight = null;
             this.txtCustomerName.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.txtCustomerName.Lines = new string[0];
-            this.txtCustomerName.Location = new System.Drawing.Point(35, 128);
+            this.txtCustomerName.Location = new System.Drawing.Point(35, 139);
             this.txtCustomerName.MaxLength = 32767;
             this.txtCustomerName.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtCustomerName.Modified = false;
@@ -590,7 +599,7 @@
             this.txtFacebookLink.IconRight = null;
             this.txtFacebookLink.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.txtFacebookLink.Lines = new string[0];
-            this.txtFacebookLink.Location = new System.Drawing.Point(320, 128);
+            this.txtFacebookLink.Location = new System.Drawing.Point(320, 139);
             this.txtFacebookLink.MaxLength = 32767;
             this.txtFacebookLink.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtFacebookLink.Modified = false;
@@ -636,6 +645,7 @@
             this.txtFacebookLink.TextPlaceholder = "Enter text";
             this.txtFacebookLink.UseSystemPasswordChar = false;
             this.txtFacebookLink.WordWrap = true;
+            this.txtFacebookLink.Validating += new System.ComponentModel.CancelEventHandler(this.txtFacebookLink_Validating);
             // 
             // txtContactNumber
             // 
@@ -666,7 +676,7 @@
             this.txtContactNumber.IconRight = null;
             this.txtContactNumber.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.txtContactNumber.Lines = new string[0];
-            this.txtContactNumber.Location = new System.Drawing.Point(35, 195);
+            this.txtContactNumber.Location = new System.Drawing.Point(35, 232);
             this.txtContactNumber.MaxLength = 32767;
             this.txtContactNumber.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtContactNumber.Modified = false;
@@ -712,6 +722,8 @@
             this.txtContactNumber.TextPlaceholder = "Enter text";
             this.txtContactNumber.UseSystemPasswordChar = false;
             this.txtContactNumber.WordWrap = true;
+            this.txtContactNumber.TextChange += new System.EventHandler(this.txtContactNumber_TextChange);
+            this.txtContactNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContactNumber_KeyPress);
             // 
             // txtIdNumber
             // 
@@ -742,7 +754,7 @@
             this.txtIdNumber.IconRight = null;
             this.txtIdNumber.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.txtIdNumber.Lines = new string[0];
-            this.txtIdNumber.Location = new System.Drawing.Point(320, 195);
+            this.txtIdNumber.Location = new System.Drawing.Point(320, 232);
             this.txtIdNumber.MaxLength = 32767;
             this.txtIdNumber.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtIdNumber.Modified = false;
@@ -818,7 +830,7 @@
             this.txtAddress.IconRight = null;
             this.txtAddress.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.txtAddress.Lines = new string[0];
-            this.txtAddress.Location = new System.Drawing.Point(35, 266);
+            this.txtAddress.Location = new System.Drawing.Point(35, 320);
             this.txtAddress.MaxLength = 32767;
             this.txtAddress.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtAddress.Modified = false;
@@ -872,7 +884,7 @@
             this.rdIsDealer.BindingControlPosition = Bunifu.UI.WinForms.BunifuRadioButton.BindingControlPositions.Right;
             this.rdIsDealer.BorderThickness = 1;
             this.rdIsDealer.Checked = true;
-            this.rdIsDealer.Location = new System.Drawing.Point(89, 342);
+            this.rdIsDealer.Location = new System.Drawing.Point(85, 413);
             this.rdIsDealer.Name = "rdIsDealer";
             this.rdIsDealer.OutlineColor = System.Drawing.Color.DodgerBlue;
             this.rdIsDealer.OutlineColorTabFocused = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
@@ -887,14 +899,15 @@
             // 
             this.lblCount.AllowParentOverrides = false;
             this.lblCount.AutoEllipsis = false;
+            this.lblCount.Cursor = System.Windows.Forms.Cursors.Default;
             this.lblCount.CursorType = System.Windows.Forms.Cursors.Default;
             this.lblCount.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblCount.Location = new System.Drawing.Point(14, 342);
+            this.lblCount.Location = new System.Drawing.Point(35, 413);
             this.lblCount.Name = "lblCount";
-            this.lblCount.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblCount.Size = new System.Drawing.Size(69, 15);
+            this.lblCount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblCount.Size = new System.Drawing.Size(29, 15);
             this.lblCount.TabIndex = 13;
-            this.lblCount.Text = "bunifuLabel2";
+            this.lblCount.Text = "0/150";
             this.lblCount.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.lblCount.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
             // 
@@ -910,9 +923,10 @@
             // 
             this.bunifuLabel2.AllowParentOverrides = false;
             this.bunifuLabel2.AutoEllipsis = false;
+            this.bunifuLabel2.Cursor = System.Windows.Forms.Cursors.Default;
             this.bunifuLabel2.CursorType = System.Windows.Forms.Cursors.Default;
             this.bunifuLabel2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bunifuLabel2.Location = new System.Drawing.Point(116, 342);
+            this.bunifuLabel2.Location = new System.Drawing.Point(121, 413);
             this.bunifuLabel2.Name = "bunifuLabel2";
             this.bunifuLabel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.bunifuLabel2.Size = new System.Drawing.Size(33, 15);
@@ -921,11 +935,114 @@
             this.bunifuLabel2.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.bunifuLabel2.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
             // 
+            // bunifuLabel3
+            // 
+            this.bunifuLabel3.AllowParentOverrides = false;
+            this.bunifuLabel3.AutoEllipsis = false;
+            this.bunifuLabel3.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel3.CursorType = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bunifuLabel3.Location = new System.Drawing.Point(42, 118);
+            this.bunifuLabel3.Name = "bunifuLabel3";
+            this.bunifuLabel3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.bunifuLabel3.Size = new System.Drawing.Size(87, 15);
+            this.bunifuLabel3.TabIndex = 16;
+            this.bunifuLabel3.Text = "Customer Name";
+            this.bunifuLabel3.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.bunifuLabel3.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            // 
+            // bunifuLabel4
+            // 
+            this.bunifuLabel4.AllowParentOverrides = false;
+            this.bunifuLabel4.AutoEllipsis = false;
+            this.bunifuLabel4.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel4.CursorType = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel4.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bunifuLabel4.Location = new System.Drawing.Point(325, 121);
+            this.bunifuLabel4.Name = "bunifuLabel4";
+            this.bunifuLabel4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.bunifuLabel4.Size = new System.Drawing.Size(76, 15);
+            this.bunifuLabel4.TabIndex = 17;
+            this.bunifuLabel4.Text = "Facebook Link";
+            this.bunifuLabel4.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.bunifuLabel4.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            // 
+            // bunifuLabel5
+            // 
+            this.bunifuLabel5.AllowParentOverrides = false;
+            this.bunifuLabel5.AutoEllipsis = false;
+            this.bunifuLabel5.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel5.CursorType = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bunifuLabel5.Location = new System.Drawing.Point(42, 211);
+            this.bunifuLabel5.Name = "bunifuLabel5";
+            this.bunifuLabel5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.bunifuLabel5.Size = new System.Drawing.Size(89, 15);
+            this.bunifuLabel5.TabIndex = 18;
+            this.bunifuLabel5.Text = "Contact Number";
+            this.bunifuLabel5.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.bunifuLabel5.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            // 
+            // bunifuLabel6
+            // 
+            this.bunifuLabel6.AllowParentOverrides = false;
+            this.bunifuLabel6.AutoEllipsis = false;
+            this.bunifuLabel6.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel6.CursorType = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bunifuLabel6.Location = new System.Drawing.Point(325, 211);
+            this.bunifuLabel6.Name = "bunifuLabel6";
+            this.bunifuLabel6.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.bunifuLabel6.Size = new System.Drawing.Size(58, 15);
+            this.bunifuLabel6.TabIndex = 19;
+            this.bunifuLabel6.Text = "ID Number";
+            this.bunifuLabel6.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.bunifuLabel6.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            // 
+            // bunifuLabel7
+            // 
+            this.bunifuLabel7.AllowParentOverrides = false;
+            this.bunifuLabel7.AutoEllipsis = false;
+            this.bunifuLabel7.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel7.CursorType = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel7.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bunifuLabel7.Location = new System.Drawing.Point(42, 299);
+            this.bunifuLabel7.Name = "bunifuLabel7";
+            this.bunifuLabel7.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.bunifuLabel7.Size = new System.Drawing.Size(42, 15);
+            this.bunifuLabel7.TabIndex = 20;
+            this.bunifuLabel7.Text = "Address";
+            this.bunifuLabel7.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.bunifuLabel7.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            // 
+            // lblErrorMessage
+            // 
+            this.lblErrorMessage.AllowParentOverrides = false;
+            this.lblErrorMessage.AutoEllipsis = false;
+            this.lblErrorMessage.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblErrorMessage.CursorType = System.Windows.Forms.Cursors.Default;
+            this.lblErrorMessage.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblErrorMessage.Location = new System.Drawing.Point(42, 374);
+            this.lblErrorMessage.Name = "lblErrorMessage";
+            this.lblErrorMessage.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblErrorMessage.Size = new System.Drawing.Size(143, 15);
+            this.lblErrorMessage.TabIndex = 21;
+            this.lblErrorMessage.Text = "Error Message Here (in red)";
+            this.lblErrorMessage.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.lblErrorMessage.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            this.lblErrorMessage.Visible = false;
+            // 
             // AddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1050, 646);
+            this.Controls.Add(this.lblErrorMessage);
+            this.Controls.Add(this.bunifuLabel7);
+            this.Controls.Add(this.bunifuLabel6);
+            this.Controls.Add(this.bunifuLabel5);
+            this.Controls.Add(this.bunifuLabel4);
+            this.Controls.Add(this.bunifuLabel3);
             this.Controls.Add(this.bunifuLabel2);
             this.Controls.Add(this.dtgCustomerView);
             this.Controls.Add(this.lblCount);
@@ -944,12 +1061,20 @@
             this.Controls.Add(this.btnSave);
             this.Name = "AddCustomer";
             this.Text = "AddCustomer";
+            this.Load += new System.EventHandler(this.AddCustomer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgCustomerItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCustomerView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
+
+        private Bunifu.UI.WinForms.BunifuLabel lblErrorMessage;
+
+        private Bunifu.UI.WinForms.BunifuLabel bunifuLabel3;
+        private Bunifu.UI.WinForms.BunifuLabel bunifuLabel4;
+        private Bunifu.UI.WinForms.BunifuLabel bunifuLabel5;
+        private Bunifu.UI.WinForms.BunifuLabel bunifuLabel6;
+        private Bunifu.UI.WinForms.BunifuLabel bunifuLabel7;
 
         #endregion
 

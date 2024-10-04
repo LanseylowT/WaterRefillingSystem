@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
@@ -206,6 +207,54 @@ namespace WaterRefillingSystem.Repository
             }
 
             return entity;
+        }
+
+        public async Task<int> GetMaxIdAsync(string procedureName)
+        {
+            int maxCustomerId = 0;
+
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                await conn.OpenAsync();
+
+                using (MySqlCommand cmd = new MySqlCommand(procedureName, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure; // Mark as stored procedure
+                    object result = await cmd.ExecuteScalarAsync();
+                    maxCustomerId = result != DBNull.Value ? Convert.ToInt32(result) : 0;
+                }
+            }
+
+            return maxCustomerId;
+        }
+
+        public async Task<int> GetMaxValueAsyncSP(string procedureName, MySqlParameter[] parameters)
+        {
+            int maxValue = 0;
+
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                await conn.OpenAsync();
+
+                using (MySqlCommand cmd = new MySqlCommand(procedureName, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    
+                    // Pass the table name and column name to the stored procedure
+                    cmd.Parameters.AddRange(parameters);
+                    
+                    // Execute the stored procedure and get the result
+                    var result = await cmd.ExecuteScalarAsync();
+                    
+                    // If result is not null, convert it to an integer
+                    if (result != DBNull.Value)
+                    {
+                        maxValue = Convert.ToInt32(result);
+                    }
+                }
+            }
+
+            return maxValue;
         }
         
         protected abstract Task<T> MapReaderToEntityAsync(MySqlDataReader reader);

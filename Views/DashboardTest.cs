@@ -16,6 +16,8 @@ namespace WaterRefillingSystem.Views
     {
         private CustomerRepository customerRepository;
         private OrderRepository orderRepository;
+        private Customer _customer;
+        private Order _order;
         public DashboardTest()
         {
             InitializeComponent();
@@ -86,7 +88,9 @@ namespace WaterRefillingSystem.Views
         private async void LoadCustomerOrderDetails(int customerId)
         {
             var orders = await orderRepository.GetOrderByCustomerIdAsyncSP(customerId);
-
+            _customer = await customerRepository.GetCustomerByIdAsyncSP(customerId);
+            // _order = orders[0];
+            
             if (orders != null && orders.Any())
             {
                 var orderDetails = orders.Select(order => new
@@ -102,6 +106,28 @@ namespace WaterRefillingSystem.Views
                 dtgCustomerSummary.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                 dtgCustomerSummary.ScrollBars = ScrollBars.Vertical;
             }
+        }
+
+        private void btnNewCustomer_Click(object sender, EventArgs e)
+        {
+            // Open the New Customer form
+            AddCustomer addCustomer = new AddCustomer();
+            addCustomer.ShowDialog();
+        }
+
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            // Check if the _customer variable is null or not
+            if (_customer != null)
+            {
+                OrderTest orderTest = new OrderTest(_customer);
+                orderTest.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please Select a customer first before ordering");
+            }
+            
         }
     }
 }

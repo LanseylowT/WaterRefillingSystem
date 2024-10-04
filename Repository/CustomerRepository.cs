@@ -97,5 +97,14 @@ namespace WaterRefillingSystem.Repository
 
             return customers;
         }
+
+        // TODO: Make a procedure for this shit
+        // TODO: Make it dynamic so that it retrieves any shit from any table with only 1 query
+        public Task<int> GetCustomerMaxIdAsyncSP()=>
+            GetMaxValueAsyncSP("GetMaxValue", new []
+            {
+                new MySqlParameter("columnName", "customer_id"),
+                new MySqlParameter("tableName", "customer")
+            });
     }
 }
