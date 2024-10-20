@@ -19,19 +19,36 @@ namespace WaterRefillingSystem.Views
         private OrderRepository orderRepository;
         private Customer _customer;
         private Order _order;
+        private OrderRepository _orderRepository;
         public DashboardTest()
         {
             InitializeComponent();
-            // ShowSummaryGrid();
+            //ShowSummaryGrid();
             customerRepository = new CustomerRepository(Commons.ConnectionString);
             orderRepository = new OrderRepository(Commons.ConnectionString);
-            // LoadCustomerData();
+            _orderRepository = new OrderRepository(Commons.ConnectionString);
+            //ShowLatestIncrementId();
+            LoadCustomerData();
+        }
+
+        private async void ShowLatestIncrementId()
+        {
+            string latestIncrementId = $"{await _orderRepository.GetLatestAutoIncrementFromOrders()}";
         }
 
         private async void LoadCustomerData()
         {
-            var customers = await customerRepository.GetAllCustomersAsyncSP();  // Fetch customers from database
-            dtgCustomerSummary.DataSource = customers;
+            try
+            {
+                var customers = await customerRepository.GetAllCustomersAsyncSP();  // Fetch customers from 
+                dtgCustomerSummary.DataSource = customers;
+                string latestIncrementId = $"{await _orderRepository.GetLatestAutoIncrementFromOrders()}";
+                //MessageBox.Show(latestIncrementId);
+            }
+            catch
+            {
+
+            }
         }
 
         private async void ShowSummaryGrid()

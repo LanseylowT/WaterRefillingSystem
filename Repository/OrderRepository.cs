@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using WaterRefillingSystem.Data;
 using WaterRefillingSystem.Models;
@@ -119,18 +120,26 @@ namespace WaterRefillingSystem.Repository
                     new MySqlParameter("p_payment_status", paymentStatus)
                 });
 
+        public Task<Order> GetOrderByOrderIdAsyncSP(int orderId) =>
+            GetByIdWithParamsAsync("GetOrderById",
+                new[]
+                {
+                    new MySqlParameter("p_order_id", orderId)
+                });
+
         
         // Get the latest auto_increment from Orders table
         public async Task<int> GetLatestAutoIncrementFromOrders()
         {
             using (MySqlConnection conn = new MySqlConnection(Commons.ConnectionString))
             {
-                conn.OpenAsync();
+                await conn.OpenAsync();
 
                 using (MySqlCommand cmd = new MySqlCommand("GetLatestAutoIncrementId", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("p_tableName", "orders");
+                    cmd.Parameters.AddWithValue("p_columnName", "order_id");
 
                     using (MySqlDataReader reader = (MySqlDataReader)await cmd.ExecuteReaderAsync())
                     {
@@ -142,6 +151,27 @@ namespace WaterRefillingSystem.Repository
                 }
             }
             return -1;
+        }
+
+        // Update a payment status after paying for the order
+        public async Task UpdatePaymentStatusAsyncSP(int orderId, int statusId)
+        {
+            using (MySqlConnection conn = new MySqlConnection(Commons.ConnectionString))
+            {
+                await conn.OpenAsync();
+
+                using (MySqlCommand cmd = new MySqlCommand("UpdatePaymentStatus", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Pass the order ID and new payment status ID as parameters
+                    cmd.Parameters.AddWithValue("p_order_id", orderId);
+                    cmd.Parameters.AddWithValue("p_status_id", statusId);
+
+                    // Execute the stored procedure
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
         }
     }
 }

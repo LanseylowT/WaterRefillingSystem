@@ -29,7 +29,8 @@ namespace WaterRefilling_Console
             GallonInventoryRepositoryTest inventoryTest = new GallonInventoryRepositoryTest();
             SalesRepositoryTest salesTest = new SalesRepositoryTest();
             PaymentStatusRepositoryTest paymentStatusTest = new PaymentStatusRepositoryTest();
-            Console.WriteLine(await _orderRepository.GetLatestAutoIncrementFromOrders());
+            string latestIncrementId = $"{ await _orderRepository.GetLatestAutoIncrementFromOrders()}";
+            
         } 
 
         public static async Task<List<Customer>> GetAllCustomers()

@@ -434,6 +434,7 @@
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.dtgCustomerSummary.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtgCustomerSummary.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgCustomerSummary.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dtgCustomerSummary.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -445,7 +446,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dtgCustomerSummary.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dtgCustomerSummary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -456,7 +457,7 @@
             this.dtgCustomerSummary.EnableHeadersVisualStyles = false;
             this.dtgCustomerSummary.Location = new System.Drawing.Point(16, 219);
             this.dtgCustomerSummary.Name = "dtgCustomerSummary";
-            this.dtgCustomerSummary.Size = new System.Drawing.Size(1087, 202);
+            this.dtgCustomerSummary.Size = new System.Drawing.Size(1093, 202);
             this.dtgCustomerSummary.TabIndex = 0;
             this.dtgCustomerSummary.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgCustomerSummary_CellContentClick);
             // 

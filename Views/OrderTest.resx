@@ -193,4 +193,22 @@
         Mff6CwHMvV69Tl50iFNldQAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="btnAddToCart.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGgAAAAzCAYAAAB7VU2VAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAChSURBVHhe7dExAYAwAMAwlMzy8IeM/RsIQECOHrl69hr3
+        fsZ9TkT7+Qb9hSgahGsQrkG4BuEahGsQrkG4BuEahGsQrkG4BuEahGsQrkG4BuEahGsQrkG4BuEahGsQ
+        rkG4BuEahGsQrkG4BuEahGsQrkG4BuEahGsQrkG4BuEahGsQrkG4BuEahGsQrkG4BuEahGsQrkG4BuGu
+        Mff6CwHMvV69Tl50iFNldQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btnCancel.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGgAAAAzCAYAAAB7VU2VAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAChSURBVHhe7dExAYAwAMAwlMzy8IeM/RsIQECOHrl69hr3
+        fsZ9TkT7+Qb9hSgahGsQrkG4BuEahGsQrkG4BuEahGsQrkG4BuEahGsQrkG4BuEahGsQrkG4BuEahGsQ
+        rkG4BuEahGsQrkG4BuEahGsQrkG4BuEahGsQrkG4BuEahGsQrkG4BuEahGsQrkG4BuEahGsQrkG4BuGu
+        Mff6CwHMvV69Tl50iFNldQAAAABJRU5ErkJggg==
+</value>
+  </data>
 </root>

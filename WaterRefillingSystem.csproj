@@ -199,11 +199,11 @@
     <Compile Include="Views\OrderTest.Designer.cs">
       <DependentUpon>OrderTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Payment.cs">
+    <Compile Include="Views\PaymentTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Payment.Designer.cs">
-      <DependentUpon>Payment.cs</DependentUpon>
+    <Compile Include="Views\PaymentTest.Designer.cs">
+      <DependentUpon>PaymentTest.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -236,8 +236,8 @@
     <EmbeddedResource Include="Views\OrderTest.resx">
       <DependentUpon>OrderTest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Payment.resx">
-      <DependentUpon>Payment.cs</DependentUpon>
+    <EmbeddedResource Include="Views\PaymentTest.resx">
+      <DependentUpon>PaymentTest.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Data\backup schema" />
     <None Include="packages.config" />
