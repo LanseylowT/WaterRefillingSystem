@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WaterRefillingSystem.Data;
 using WaterRefillingSystem.Models;
 using WaterRefillingSystem.Repository;
 
@@ -22,8 +23,8 @@ namespace WaterRefillingSystem.Views
         {
             InitializeComponent();
             // ShowSummaryGrid();
-            customerRepository = new CustomerRepository("Server=localhost;Database=waterrefilling_system;User ID=root;Password=Lansilot@123;");
-            orderRepository = new OrderRepository("Server=localhost;Database=waterrefilling_system;User ID=root;Password=Lansilot@123;");
+            customerRepository = new CustomerRepository(Commons.ConnectionString);
+            orderRepository = new OrderRepository(Commons.ConnectionString);
             // LoadCustomerData();
         }
 
@@ -128,6 +129,11 @@ namespace WaterRefillingSystem.Views
                 MessageBox.Show("Please Select a customer first before ordering");
             }
             
+        }
+
+        private void dtgCustomerSummary_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

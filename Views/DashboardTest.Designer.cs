@@ -458,6 +458,7 @@
             this.dtgCustomerSummary.Name = "dtgCustomerSummary";
             this.dtgCustomerSummary.Size = new System.Drawing.Size(1087, 202);
             this.dtgCustomerSummary.TabIndex = 0;
+            this.dtgCustomerSummary.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgCustomerSummary_CellContentClick);
             // 
             // dtgCustomerOverall
             // 
@@ -484,6 +485,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgCustomerSummary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCustomerOverall)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         private Bunifu.UI.WinForms.BunifuPanel bunifuPanel1;

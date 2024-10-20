@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using WaterRefillingSystem.Data;
 using WaterRefillingSystem.Models;
 using WaterRefillingSystem.Repository;
 
@@ -16,7 +17,7 @@ namespace WaterRefillingSystem.Views
         public CustomerTest()
         {
             InitializeComponent();
-            _customerRepository = new CustomerRepository("Server=localhost;Database=waterrefilling_system;User ID=root;Password=Lansilot@123;");
+            _customerRepository = new CustomerRepository(Commons.ConnectionString);
             cmbFilterType.SelectedIndex = 0;
             LoadCustomerData();
             dtgCustomerView.CellClick += dtgCustomerView_CellContentClick;
@@ -31,7 +32,7 @@ namespace WaterRefillingSystem.Views
         private void LoadFilterCustomers(string filterBy, string searchValue)
         {
             // Set up the connection to the database
-            using (MySqlConnection conn = new MySqlConnection("Server=localhost;Database=waterrefilling_system;User ID=root;Password=Lansilot@123;"))
+            using (MySqlConnection conn = new MySqlConnection(Commons.ConnectionString))
             {
                 conn.Open();
                 

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using WaterRefillingSystem.Data;
 using WaterRefillingSystem.Models;
 
 namespace WaterRefillingSystem.Repository
@@ -116,6 +118,30 @@ namespace WaterRefillingSystem.Repository
                 {
                     new MySqlParameter("p_payment_status", paymentStatus)
                 });
+
         
+        // Get the latest auto_increment from Orders table
+        public async Task<int> GetLatestAutoIncrementFromOrders()
+        {
+            using (MySqlConnection conn = new MySqlConnection(Commons.ConnectionString))
+            {
+                conn.OpenAsync();
+
+                using (MySqlCommand cmd = new MySqlCommand("GetLatestAutoIncrementId", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("p_tableName", "orders");
+
+                    using (MySqlDataReader reader = (MySqlDataReader)await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            return Convert.ToInt32(reader["LatestId"]);
+                        }
+                    }
+                }
+            }
+            return -1;
+        }
     }
 }

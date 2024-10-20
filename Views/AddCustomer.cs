@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WaterRefillingSystem.Data;
 using WaterRefillingSystem.Models;
 using WaterRefillingSystem.Repository;
 
@@ -18,7 +19,7 @@ namespace WaterRefillingSystem.Views
         public AddCustomer()
         {
             InitializeComponent();
-            _customerRepository = new CustomerRepository("Server=localhost;Database=waterrefilling_system;User ID=root;Password=Lansilot@123;");
+            _customerRepository = new CustomerRepository(Commons.ConnectionString);
             
         }
         

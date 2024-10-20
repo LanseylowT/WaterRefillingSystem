@@ -357,7 +357,7 @@
             this.bunifuLabel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.bunifuLabel1.CursorType = System.Windows.Forms.Cursors.Default;
             this.bunifuLabel1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bunifuLabel1.Location = new System.Drawing.Point(791, 29);
+            this.bunifuLabel1.Location = new System.Drawing.Point(761, 31);
             this.bunifuLabel1.Name = "bunifuLabel1";
             this.bunifuLabel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.bunifuLabel1.Size = new System.Drawing.Size(84, 15);
@@ -402,7 +402,7 @@
             this.cmbFilter.ItemHighLightColor = System.Drawing.Color.DodgerBlue;
             this.cmbFilter.ItemHighLightForeColor = System.Drawing.Color.White;
             this.cmbFilter.ItemTopMargin = 3;
-            this.cmbFilter.Location = new System.Drawing.Point(690, 65);
+            this.cmbFilter.Location = new System.Drawing.Point(673, 65);
             this.cmbFilter.Name = "cmbFilter";
             this.cmbFilter.Size = new System.Drawing.Size(260, 32);
             this.cmbFilter.TabIndex = 4;
@@ -439,7 +439,7 @@
             this.txtSearch.IconRight = null;
             this.txtSearch.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.txtSearch.Lines = new string[0];
-            this.txtSearch.Location = new System.Drawing.Point(690, 103);
+            this.txtSearch.Location = new System.Drawing.Point(673, 103);
             this.txtSearch.MaxLength = 32767;
             this.txtSearch.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtSearch.Modified = false;
@@ -489,9 +489,9 @@
             // dtgCustomerItems
             // 
             this.dtgCustomerItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgCustomerItems.Location = new System.Drawing.Point(710, 182);
+            this.dtgCustomerItems.Location = new System.Drawing.Point(616, 182);
             this.dtgCustomerItems.Name = "dtgCustomerItems";
-            this.dtgCustomerItems.Size = new System.Drawing.Size(240, 150);
+            this.dtgCustomerItems.Size = new System.Drawing.Size(413, 252);
             this.dtgCustomerItems.TabIndex = 6;
             // 
             // txtCustomerName
@@ -1066,6 +1066,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtgCustomerView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private Bunifu.UI.WinForms.BunifuLabel lblErrorMessage;
