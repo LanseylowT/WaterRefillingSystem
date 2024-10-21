@@ -13,6 +13,7 @@ using WaterRefillingSystem.Repository;
 
 namespace WaterRefillingSystem.Views
 {
+    // TODO: Fix the fucking dtgCustomerSummary, copy the shit from the car rental please
     public partial class DashboardTest : Form
     {
         private CustomerRepository customerRepository;
