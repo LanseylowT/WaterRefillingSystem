@@ -104,12 +104,20 @@ namespace WaterRefillingSystem.Repository
 
 
         // Using stored procedure for fetching orders by customer ID
+        // Wrong
         public Task<List<Order>> GetOrderByCustomerIdAsyncSP(int customerId) =>
             GetAllWithParamsAsync("GetOrdersByCustomerId", 
                 new[]
                 {
                     new MySqlParameter("p_customer_id", customerId)
                 });
+
+        // Correct
+        public Task<Order> GetOrderByCustomerIdAsyncSp(int customerId) =>
+            GetByIdWithParamsAsync("GetOrdersByCustomerId", new[]
+            {
+                new MySqlParameter("p_customer_id", customerId)
+            });
         
 
         // Using stored procedure for fetching orders by payment status

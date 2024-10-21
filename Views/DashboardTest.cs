@@ -23,11 +23,10 @@ namespace WaterRefillingSystem.Views
         public DashboardTest()
         {
             InitializeComponent();
-            //ShowSummaryGrid();
+            
             customerRepository = new CustomerRepository(Commons.ConnectionString);
             orderRepository = new OrderRepository(Commons.ConnectionString);
             _orderRepository = new OrderRepository(Commons.ConnectionString);
-            //ShowLatestIncrementId();
             LoadCustomerData();
         }
 
@@ -42,12 +41,12 @@ namespace WaterRefillingSystem.Views
             {
                 var customers = await customerRepository.GetAllCustomersAsyncSP();  // Fetch customers from 
                 dtgCustomerSummary.DataSource = customers;
-                string latestIncrementId = $"{await _orderRepository.GetLatestAutoIncrementFromOrders()}";
+                // string latestIncrementId = $"{await _orderRepository.GetLatestAutoIncrementFromOrders()}";
                 //MessageBox.Show(latestIncrementId);
             }
             catch
             {
-
+                MessageBox.Show("There is an error loading customer data");
             }
         }
 
@@ -79,6 +78,7 @@ namespace WaterRefillingSystem.Views
             dtgCustomerSummary.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgCustomerSummary.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dtgCustomerSummary.ScrollBars = ScrollBars.Vertical;
+            dtgCustomerSummary.Refresh();
         }
 
         private void btnCustomer_Click(object sender, EventArgs e)
@@ -99,17 +99,44 @@ namespace WaterRefillingSystem.Views
         {
             if (selectedCustomer != null)
             {
+                // MessageBox.Show($@"{selectedCustomer.CustomerId}");
                 LoadCustomerOrderDetails(selectedCustomer.CustomerId);
             }
         }
 
         private async void LoadCustomerOrderDetails(int customerId)
         {
+            Order selectedOrder = await orderRepository.GetOrderByCustomerIdAsyncSp(customerId);
             var orders = await orderRepository.GetOrderByCustomerIdAsyncSP(customerId);
             _customer = await customerRepository.GetCustomerByIdAsyncSP(customerId);
+            // MessageBox.Show(selectedOrder.ItemType.ItemName);
             // _order = orders[0];
+
+            if (selectedOrder != null)
+            {
+                var orderDetails = new[]
+                {
+                    new
+                    {
+                        selectedOrder.ItemType.ItemName,
+                        selectedOrder.OwnGallons,
+                        selectedOrder.BorrowedGallons,
+                        TotalGallons = selectedOrder.OwnGallons + selectedOrder.BorrowedGallons
+                    }
+                }.ToList();
+
+                dtgCustomerSummary.DataSource = orderDetails;
+                dtgCustomerSummary.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dtgCustomerSummary.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                dtgCustomerSummary.ScrollBars = ScrollBars.Vertical;
+                dtgCustomerSummary.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Orders is null");
+            }
             
-            if (orders != null && orders.Any())
+            /*if (orders != null && orders.Any())
             {
                 var orderDetails = orders.Select(order => new
                 {
@@ -123,7 +150,7 @@ namespace WaterRefillingSystem.Views
                 dtgCustomerSummary.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dtgCustomerSummary.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                 dtgCustomerSummary.ScrollBars = ScrollBars.Vertical;
-            }
+            }*/
         }
 
         private void btnNewCustomer_Click(object sender, EventArgs e)
@@ -138,12 +165,15 @@ namespace WaterRefillingSystem.Views
             // Check if the _customer variable is null or not
             if (_customer != null)
             {
+                
                 OrderTest orderTest = new OrderTest(_customer);
                 orderTest.ShowDialog();
             }
             else
             {
-                MessageBox.Show("Please Select a customer first before ordering");
+                OrderTest orderTest = new OrderTest(new Customer());
+                orderTest.ShowDialog();
+                // MessageBox.Show("Please Select a customer first before ordering");
             }
             
         }
@@ -151,6 +181,13 @@ namespace WaterRefillingSystem.Views
         private void dtgCustomerSummary_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void DashboardTest_Load(object sender, EventArgs e)
+        {
+            ShowSummaryGrid();
+            // ShowLatestIncrementId();
+            // LoadCustomerData();
         }
     }
 }

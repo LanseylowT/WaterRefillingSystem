@@ -13,6 +13,7 @@ namespace WaterRefillingSystem.Data
         public static readonly string DefaultFontName = "Poppins";
         public static readonly float DefaultFontSize = 12f;
 
-        public static readonly string ConnectionString = "Server=localhost;Database=waterrefilling_system;User ID=root;Password=121103;Port=3307";
+        public static readonly string ConnectionString =
+            "Server=localhost;Database=waterrefilling_system;User ID=root;Password=Lansilot@123;";
     }
 }

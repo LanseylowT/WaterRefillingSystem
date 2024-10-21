@@ -33,8 +33,6 @@ namespace WaterRefillingSystem.Views
             _paymentStatusRepository = new PaymentStatusRepository(Commons.ConnectionString);
             _salesRepository = new SalesRepository(Commons.ConnectionString);
             DisplayCustomerDetails();
-            
-            
         }
         
         // Method to display customer details in the OrderForm
@@ -97,12 +95,16 @@ namespace WaterRefillingSystem.Views
                 order.TotalPrice = CalculateTotalPrice(order);
 
                 // This is only if the order is new and not from the Cart/Order not paid
-                await _orderRepository.AddOrderAsyncSP(order);
+                // await _orderRepository.AddOrderAsyncSP(order);
                 MessageBox.Show("New Order added successfully!");
             } 
-            else
+            else if (Orders != null && _selectedRow != null)
             {
                 order = Orders;
+            }
+            else
+            {
+                MessageBox.Show("Please select a customer from the list first!");
             }
             // TODO: Get the latest auto_increment id from table orders
             PaymentTest payment = new PaymentTest(order);
@@ -235,7 +237,7 @@ namespace WaterRefillingSystem.Views
             //MessageBox.Show($"{await _orderRepository.GetLatestAutoIncrementFromOrders()}");
             SetupDataGrid();
             DisplayOrdersInDataGrid();
-            Orders = new Order();
+            // Orders = new Order();
             cmbBorrowedGallon.SelectedIndex = 0;
             cmbOwnGallon.SelectedIndex = 0;
         }
