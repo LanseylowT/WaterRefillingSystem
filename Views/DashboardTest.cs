@@ -28,7 +28,7 @@ namespace WaterRefillingSystem.Views
             customerRepository = new CustomerRepository(Commons.ConnectionString);
             orderRepository = new OrderRepository(Commons.ConnectionString);
             _orderRepository = new OrderRepository(Commons.ConnectionString);
-            LoadCustomerData();
+            //LoadCustomerData();
         }
 
         private async void ShowLatestIncrementId()
@@ -119,6 +119,8 @@ namespace WaterRefillingSystem.Views
                 {
                     new
                     {
+                        _customer.Name,
+                        _customer.Address,
                         selectedOrder.ItemType.ItemName,
                         selectedOrder.OwnGallons,
                         selectedOrder.BorrowedGallons,
@@ -184,9 +186,45 @@ namespace WaterRefillingSystem.Views
 
         }
 
+        private void SetupDataGridView()
+        {
+            // Set the column header style
+            dtgCustomerSummary.EnableHeadersVisualStyles = false;
+            /*dtgAvailableCars.ColumnHeadersDefaultCellStyle.BackColor = Color.Gray;
+            dtgAvailableCars.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;*/
+            dtgCustomerSummary.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10f, FontStyle.Bold);
+            dtgCustomerSummary.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Optional: Set the grid's border style
+            // dtgAvailableCars.BorderStyle = BorderStyle.None;
+
+            // Set the dock style to fill
+            //dtgAvailableCars.Dock = DockStyle.Fill;
+
+            /*// Set row styling
+            dtgAvailableCars.RowsDefaultCellStyle.BackColor = Color.White; // White background for rows
+            dtgAvailableCars.RowsDefaultCellStyle.ForeColor = Color.Black; // Black text for rows
+            dtgAvailableCars.RowsDefaultCellStyle.SelectionBackColor =
+                Color.LightGray; // Row selection background color
+            dtgAvailableCars.RowsDefaultCellStyle.SelectionForeColor = Color.Black; // Row selection text color
+
+            // Set alternating row style
+            dtgAvailableCars.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray; // Alternating row background*/
+
+            dtgCustomerSummary.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Example Data: Add columns and rows for demonstration purposes
+            dtgCustomerSummary.Columns.Add("CarID", "Car ID");
+            dtgCustomerSummary.Columns.Add("Brand", "Brand");
+            dtgCustomerSummary.Columns.Add("Model", "Model");
+            dtgCustomerSummary.Columns.Add("Price", "Price");
+            dtgCustomerSummary.Columns.Add("Status", "Status");
+        }
+
         private void DashboardTest_Load(object sender, EventArgs e)
         {
-            ShowSummaryGrid();
+            //ShowSummaryGrid(); 
+            //SetupDataGridView();
             // ShowLatestIncrementId();
             // LoadCustomerData();
         }

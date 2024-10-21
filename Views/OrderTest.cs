@@ -119,6 +119,7 @@ namespace WaterRefillingSystem.Views
                 OrderId = payments.OrderId;
                 // Update
                 await _orderRepository.UpdatePaymentStatusAsyncSP(OrderId, 1);
+
                 // Add sales
                 var sales = new Sales
                 {
@@ -130,6 +131,7 @@ namespace WaterRefillingSystem.Views
 
                 // Add
                 await _salesRepository.AddSaleAsyncSP(sales);
+                
             }
         }
 
@@ -229,6 +231,7 @@ namespace WaterRefillingSystem.Views
 
                 var id = Convert.ToInt32(_selectedRow.Cells["OrderId"].Value);
                 Orders = await _orderRepository.GetOrderByOrderIdAsyncSP(id);
+                Customer = await _customerRepository.GetCustomerByIdAsyncSP(Orders.CustomerId);
             }
         }
 

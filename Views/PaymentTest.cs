@@ -52,7 +52,7 @@ namespace WaterRefillingSystem.Views
                 payment.PaymentDate = DateTime.Now;
                 await _paymentRepository.AddPaymentAsyncSP(payment);
                 DialogResult = DialogResult.OK;
-                MessageBox.Show("Payment successfully recorded!");
+                MessageBox.Show("Payment successfully recorded! And latest auto increment ID: " + payment.OrderId);
                 Close();
             } 
             else

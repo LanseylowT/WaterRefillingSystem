@@ -169,6 +169,12 @@
     <Compile Include="Views\AddCustomer.Designer.cs">
       <DependentUpon>AddCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddExpense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddExpense.Designer.cs">
+      <DependentUpon>AddExpense.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomerTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,12 @@
     <Compile Include="Views\ReturnGallonTest.Designer.cs">
       <DependentUpon>ReturnGallonTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\SalesAndExpenseTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SalesAndExpenseTest.Designer.cs">
+      <DependentUpon>SalesAndExpenseTest.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -244,6 +256,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PaymentTest.resx">
       <DependentUpon>PaymentTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReturnGallonTest.resx">
+      <DependentUpon>ReturnGallonTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SalesAndExpenseTest.resx">
+      <DependentUpon>SalesAndExpenseTest.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Data\backup schema" />
     <None Include="packages.config" />

@@ -36,19 +36,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnCustomer = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.btnNewCustomer = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.btnReturnGallon = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.btnOrder = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dtgCustomerSummary = new System.Windows.Forms.DataGridView();
             this.dtgCustomerOverall = new System.Windows.Forms.DataGridView();
+            this.bunifuLabel1 = new Bunifu.UI.WinForms.BunifuLabel();
             this.bunifuPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCustomerSummary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCustomerOverall)).BeginInit();
             this.SuspendLayout();
@@ -102,8 +98,7 @@
             this.btnCustomer.IdleIconLeftImage = null;
             this.btnCustomer.IdleIconRightImage = null;
             this.btnCustomer.IndicateFocus = false;
-            this.btnCustomer.Location = new System.Drawing.Point(99, 47);
-            this.btnCustomer.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCustomer.Location = new System.Drawing.Point(74, 38);
             this.btnCustomer.Name = "btnCustomer";
             this.btnCustomer.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnCustomer.OnDisabledState.BorderRadius = 1;
@@ -137,7 +132,7 @@
             this.btnCustomer.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.btnCustomer.OnPressedState.IconLeftImage = null;
             this.btnCustomer.OnPressedState.IconRightImage = null;
-            this.btnCustomer.Size = new System.Drawing.Size(320, 166);
+            this.btnCustomer.Size = new System.Drawing.Size(240, 135);
             this.btnCustomer.TabIndex = 0;
             this.btnCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnCustomer.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -195,8 +190,7 @@
             this.btnNewCustomer.IdleIconLeftImage = null;
             this.btnNewCustomer.IdleIconRightImage = null;
             this.btnNewCustomer.IndicateFocus = false;
-            this.btnNewCustomer.Location = new System.Drawing.Point(489, 47);
-            this.btnNewCustomer.Margin = new System.Windows.Forms.Padding(4);
+            this.btnNewCustomer.Location = new System.Drawing.Point(367, 38);
             this.btnNewCustomer.Name = "btnNewCustomer";
             this.btnNewCustomer.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnNewCustomer.OnDisabledState.BorderRadius = 1;
@@ -230,7 +224,7 @@
             this.btnNewCustomer.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.btnNewCustomer.OnPressedState.IconLeftImage = null;
             this.btnNewCustomer.OnPressedState.IconRightImage = null;
-            this.btnNewCustomer.Size = new System.Drawing.Size(320, 166);
+            this.btnNewCustomer.Size = new System.Drawing.Size(240, 135);
             this.btnNewCustomer.TabIndex = 1;
             this.btnNewCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnNewCustomer.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -288,8 +282,7 @@
             this.btnReturnGallon.IdleIconLeftImage = null;
             this.btnReturnGallon.IdleIconRightImage = null;
             this.btnReturnGallon.IndicateFocus = false;
-            this.btnReturnGallon.Location = new System.Drawing.Point(880, 47);
-            this.btnReturnGallon.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReturnGallon.Location = new System.Drawing.Point(660, 38);
             this.btnReturnGallon.Name = "btnReturnGallon";
             this.btnReturnGallon.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnReturnGallon.OnDisabledState.BorderRadius = 1;
@@ -323,7 +316,7 @@
             this.btnReturnGallon.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.btnReturnGallon.OnPressedState.IconLeftImage = null;
             this.btnReturnGallon.OnPressedState.IconRightImage = null;
-            this.btnReturnGallon.Size = new System.Drawing.Size(320, 166);
+            this.btnReturnGallon.Size = new System.Drawing.Size(240, 135);
             this.btnReturnGallon.TabIndex = 2;
             this.btnReturnGallon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnReturnGallon.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -380,8 +373,7 @@
             this.btnOrder.IdleIconLeftImage = null;
             this.btnOrder.IdleIconRightImage = null;
             this.btnOrder.IndicateFocus = false;
-            this.btnOrder.Location = new System.Drawing.Point(1279, 47);
-            this.btnOrder.Margin = new System.Windows.Forms.Padding(4);
+            this.btnOrder.Location = new System.Drawing.Point(959, 38);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnOrder.OnDisabledState.BorderRadius = 1;
@@ -415,7 +407,7 @@
             this.btnOrder.OnPressedState.ForeColor = System.Drawing.Color.White;
             this.btnOrder.OnPressedState.IconLeftImage = null;
             this.btnOrder.OnPressedState.IconRightImage = null;
-            this.btnOrder.Size = new System.Drawing.Size(320, 166);
+            this.btnOrder.Size = new System.Drawing.Size(240, 135);
             this.btnOrder.TabIndex = 3;
             this.btnOrder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOrder.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
@@ -432,22 +424,21 @@
             this.bunifuPanel1.BorderColor = System.Drawing.Color.Transparent;
             this.bunifuPanel1.BorderRadius = 3;
             this.bunifuPanel1.BorderThickness = 1;
-            this.bunifuPanel1.Controls.Add(this.dataGridView1);
+            this.bunifuPanel1.Controls.Add(this.bunifuLabel1);
             this.bunifuPanel1.Controls.Add(this.dtgCustomerSummary);
-            this.bunifuPanel1.Location = new System.Drawing.Point(99, 260);
-            this.bunifuPanel1.Margin = new System.Windows.Forms.Padding(4);
+            this.bunifuPanel1.Location = new System.Drawing.Point(74, 211);
             this.bunifuPanel1.Name = "bunifuPanel1";
             this.bunifuPanel1.ShowBorders = true;
-            this.bunifuPanel1.Size = new System.Drawing.Size(1500, 522);
+            this.bunifuPanel1.Size = new System.Drawing.Size(1125, 424);
             this.bunifuPanel1.TabIndex = 4;
             // 
-            // dataGridView1
+            // dtgCustomerSummary
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dtgCustomerSummary.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtgCustomerSummary.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgCustomerSummary.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dtgCustomerSummary.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(70)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -455,8 +446,8 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgCustomerSummary.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dtgCustomerSummary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -464,78 +455,58 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.ForestGreen;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(22, 137);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1457, 249);
-            this.dataGridView1.TabIndex = 1;
-            // 
-            // dtgCustomerSummary
-            // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
-            this.dtgCustomerSummary.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dtgCustomerSummary.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtgCustomerSummary.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dtgCustomerSummary.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(70)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgCustomerSummary.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dtgCustomerSummary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.ForestGreen;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgCustomerSummary.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dtgCustomerSummary.DefaultCellStyle = dataGridViewCellStyle3;
             this.dtgCustomerSummary.EnableHeadersVisualStyles = false;
-            this.dtgCustomerSummary.Location = new System.Drawing.Point(21, 270);
-            this.dtgCustomerSummary.Margin = new System.Windows.Forms.Padding(4);
+            this.dtgCustomerSummary.Location = new System.Drawing.Point(16, 209);
             this.dtgCustomerSummary.Name = "dtgCustomerSummary";
-            this.dtgCustomerSummary.Size = new System.Drawing.Size(1457, 249);
+            this.dtgCustomerSummary.Size = new System.Drawing.Size(1093, 202);
             this.dtgCustomerSummary.TabIndex = 0;
             this.dtgCustomerSummary.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgCustomerSummary_CellContentClick);
             // 
             // dtgCustomerOverall
             // 
             this.dtgCustomerOverall.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgCustomerOverall.Location = new System.Drawing.Point(99, 815);
-            this.dtgCustomerOverall.Margin = new System.Windows.Forms.Padding(4);
+            this.dtgCustomerOverall.Location = new System.Drawing.Point(74, 662);
             this.dtgCustomerOverall.Name = "dtgCustomerOverall";
-            this.dtgCustomerOverall.Size = new System.Drawing.Size(1500, 165);
+            this.dtgCustomerOverall.Size = new System.Drawing.Size(1125, 134);
             this.dtgCustomerOverall.TabIndex = 5;
+            // 
+            // bunifuLabel1
+            // 
+            this.bunifuLabel1.AllowParentOverrides = false;
+            this.bunifuLabel1.AutoEllipsis = false;
+            this.bunifuLabel1.CursorType = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuLabel1.Location = new System.Drawing.Point(16, 182);
+            this.bunifuLabel1.Name = "bunifuLabel1";
+            this.bunifuLabel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.bunifuLabel1.Size = new System.Drawing.Size(133, 21);
+            this.bunifuLabel1.TabIndex = 1;
+            this.bunifuLabel1.Text = "Selected Customer:";
+            this.bunifuLabel1.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.bunifuLabel1.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
             // 
             // DashboardTest
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1649, 994);
+            this.ClientSize = new System.Drawing.Size(1237, 808);
             this.Controls.Add(this.dtgCustomerOverall);
             this.Controls.Add(this.bunifuPanel1);
             this.Controls.Add(this.btnOrder);
             this.Controls.Add(this.btnReturnGallon);
             this.Controls.Add(this.btnNewCustomer);
             this.Controls.Add(this.btnCustomer);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DashboardTest";
             this.Text = "DashboardTest";
             this.Load += new System.EventHandler(this.DashboardTest_Load);
             this.bunifuPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.bunifuPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCustomerSummary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgCustomerOverall)).EndInit();
             this.ResumeLayout(false);
-        }
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        }
 
         private Bunifu.UI.WinForms.BunifuPanel bunifuPanel1;
 
@@ -549,5 +520,6 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnCustomer;
         private System.Windows.Forms.DataGridView dtgCustomerSummary;
         private System.Windows.Forms.DataGridView dtgCustomerOverall;
+        private Bunifu.UI.WinForms.BunifuLabel bunifuLabel1;
     }
 }
