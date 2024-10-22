@@ -88,6 +88,7 @@
             this.bunifuButton4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.bunifuButton5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.bunifuButton6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.pnlMain = new Bunifu.UI.WinForms.BunifuPanel();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -338,6 +339,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.pnlMain);
             this.panel3.Controls.Add(this.panelHEader);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
@@ -1281,6 +1283,20 @@
             this.bunifuButton6.TextPadding = new System.Windows.Forms.Padding(0);
             this.bunifuButton6.UseDefaultRadiusAndThickness = true;
             // 
+            // pnlMain
+            // 
+            this.pnlMain.BackgroundColor = System.Drawing.Color.Transparent;
+            this.pnlMain.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlMain.BackgroundImage")));
+            this.pnlMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlMain.BorderColor = System.Drawing.Color.Transparent;
+            this.pnlMain.BorderRadius = 3;
+            this.pnlMain.BorderThickness = 1;
+            this.pnlMain.Location = new System.Drawing.Point(292, 105);
+            this.pnlMain.Name = "pnlMain";
+            this.pnlMain.ShowBorders = true;
+            this.pnlMain.Size = new System.Drawing.Size(731, 636);
+            this.pnlMain.TabIndex = 2;
+            // 
             // Dashboard2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1349,5 +1365,6 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton bunifuButton1;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton bunifuButton7;
         private Bunifu.UI.WinForms.BunifuTextBox bunifuTextBox1;
+        private Bunifu.UI.WinForms.BunifuPanel pnlMain;
     }
 }
