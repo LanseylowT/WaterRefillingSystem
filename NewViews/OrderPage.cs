@@ -79,7 +79,7 @@ namespace WaterRefillingSystem.NewViews
                     ServiceId = serviceOption,
                     OwnGallons = ownGallons,
                     BorrowedGallons = borrowedGallons,
-                    PaymentStatusId = 1,
+                    PaymentStatusId = 2,
                     Date = DateTime.Now,
                 };
 
@@ -221,6 +221,7 @@ namespace WaterRefillingSystem.NewViews
             try
             {
                 var orders = await _orderRepository.GetAllOrdersAsyncSP();
+                var gallonInventory = new GallonInventory();
                 dtgOrderQueue.Rows.Clear();
 
                 // Add Rows to the Data Grid View
@@ -230,7 +231,17 @@ namespace WaterRefillingSystem.NewViews
                     {
                         // The order is already paid
                         var customer = await _customerRepository.GetCustomerByIdAsyncSP(order.CustomerId);
-                        var gallonInventory = await _gallonInventoryRepository.GetInventoryByCustomerIdAsyncSP(order.CustomerId);
+                        gallonInventory = await _gallonInventoryRepository.GetInventoryByCustomerIdAsyncSP(order.CustomerId);
+                        if (gallonInventory == null)
+                        {
+                            gallonInventory = new GallonInventory
+                            {
+                                CustomerId = order.CustomerId,
+                                OwnedGallons = 0,
+                                BorrowedGallons = 0
+                            };
+                        }
+
                         dtgOrderQueue.Rows.Add(
                             order.OrderId,
                             customer.Name,
@@ -248,7 +259,8 @@ namespace WaterRefillingSystem.NewViews
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Orders is null");
+                MessageBox.Show(ex.Message);
+                Console.WriteLine(ex);
             }
         }
 
