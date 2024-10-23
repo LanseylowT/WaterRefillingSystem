@@ -31,7 +31,16 @@ namespace WaterRefillingSystem.NewViews
             };
 
             await _expenseRepository.AddExpenseAsyncSP(expense);
+            Dashboard2 dashboard2 = new Dashboard2();
+            dashboard2.LoadLabels();
             MessageBox.Show("Expense added successfully");
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+        
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
             Close();
         }
 
@@ -43,5 +52,7 @@ namespace WaterRefillingSystem.NewViews
                 e.Handled = true;
             }
         }
+
+        
     }
 }

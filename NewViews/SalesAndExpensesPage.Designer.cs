@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             this.bunifuLabel2 = new Bunifu.UI.WinForms.BunifuLabel();
             this.bunifuLabel1 = new Bunifu.UI.WinForms.BunifuLabel();
             this.cmbSalesFilter = new Bunifu.UI.WinForms.BunifuDropdown();
@@ -43,6 +44,7 @@
             this.bunifuLabel4 = new Bunifu.UI.WinForms.BunifuLabel();
             this.dtgExpenses = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.cmbExpensesFilter = new Bunifu.UI.WinForms.BunifuDropdown();
+            this.btnAddExpense = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             ((System.ComponentModel.ISupportInitialize)(this.dtgSales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgExpenses)).BeginInit();
             this.SuspendLayout();
@@ -322,11 +324,102 @@
             this.cmbExpensesFilter.TextLeftMargin = 5;
             this.cmbExpensesFilter.SelectedIndexChanged += new System.EventHandler(this.cmbExpensesFilter_SelectedIndexChanged);
             // 
+            // btnAddExpense
+            // 
+            this.btnAddExpense.AllowAnimations = true;
+            this.btnAddExpense.AllowMouseEffects = true;
+            this.btnAddExpense.AllowToggling = false;
+            this.btnAddExpense.AnimationSpeed = 200;
+            this.btnAddExpense.AutoGenerateColors = false;
+            this.btnAddExpense.AutoRoundBorders = false;
+            this.btnAddExpense.AutoSizeLeftIcon = true;
+            this.btnAddExpense.AutoSizeRightIcon = true;
+            this.btnAddExpense.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddExpense.BackColor1 = System.Drawing.Color.DodgerBlue;
+            this.btnAddExpense.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddExpense.BackgroundImage")));
+            this.btnAddExpense.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.btnAddExpense.ButtonText = "Add Expense";
+            this.btnAddExpense.ButtonTextMarginLeft = 0;
+            this.btnAddExpense.ColorContrastOnClick = 45;
+            this.btnAddExpense.ColorContrastOnHover = 45;
+            this.btnAddExpense.Cursor = System.Windows.Forms.Cursors.Default;
+            borderEdges1.BottomLeft = true;
+            borderEdges1.BottomRight = true;
+            borderEdges1.TopLeft = true;
+            borderEdges1.TopRight = true;
+            this.btnAddExpense.CustomizableEdges = borderEdges1;
+            this.btnAddExpense.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnAddExpense.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.btnAddExpense.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.btnAddExpense.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.btnAddExpense.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.ButtonStates.Pressed;
+            this.btnAddExpense.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnAddExpense.ForeColor = System.Drawing.Color.White;
+            this.btnAddExpense.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddExpense.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.btnAddExpense.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.btnAddExpense.IconMarginLeft = 11;
+            this.btnAddExpense.IconPadding = 10;
+            this.btnAddExpense.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddExpense.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.btnAddExpense.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.btnAddExpense.IconSize = 25;
+            this.btnAddExpense.IdleBorderColor = System.Drawing.Color.DodgerBlue;
+            this.btnAddExpense.IdleBorderRadius = 1;
+            this.btnAddExpense.IdleBorderThickness = 1;
+            this.btnAddExpense.IdleFillColor = System.Drawing.Color.DodgerBlue;
+            this.btnAddExpense.IdleIconLeftImage = null;
+            this.btnAddExpense.IdleIconRightImage = null;
+            this.btnAddExpense.IndicateFocus = false;
+            this.btnAddExpense.Location = new System.Drawing.Point(689, 357);
+            this.btnAddExpense.Name = "btnAddExpense";
+            this.btnAddExpense.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.btnAddExpense.OnDisabledState.BorderRadius = 1;
+            this.btnAddExpense.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.btnAddExpense.OnDisabledState.BorderThickness = 1;
+            this.btnAddExpense.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.btnAddExpense.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.btnAddExpense.OnDisabledState.IconLeftImage = null;
+            this.btnAddExpense.OnDisabledState.IconRightImage = null;
+            this.btnAddExpense.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.btnAddExpense.onHoverState.BorderRadius = 1;
+            this.btnAddExpense.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.btnAddExpense.onHoverState.BorderThickness = 1;
+            this.btnAddExpense.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.btnAddExpense.onHoverState.ForeColor = System.Drawing.Color.White;
+            this.btnAddExpense.onHoverState.IconLeftImage = null;
+            this.btnAddExpense.onHoverState.IconRightImage = null;
+            this.btnAddExpense.OnIdleState.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.btnAddExpense.OnIdleState.BorderRadius = 1;
+            this.btnAddExpense.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.btnAddExpense.OnIdleState.BorderThickness = 1;
+            this.btnAddExpense.OnIdleState.FillColor = System.Drawing.Color.DodgerBlue;
+            this.btnAddExpense.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.btnAddExpense.OnIdleState.IconLeftImage = null;
+            this.btnAddExpense.OnIdleState.IconRightImage = null;
+            this.btnAddExpense.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.btnAddExpense.OnPressedState.BorderRadius = 1;
+            this.btnAddExpense.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.btnAddExpense.OnPressedState.BorderThickness = 1;
+            this.btnAddExpense.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.btnAddExpense.OnPressedState.ForeColor = System.Drawing.Color.White;
+            this.btnAddExpense.OnPressedState.IconLeftImage = null;
+            this.btnAddExpense.OnPressedState.IconRightImage = null;
+            this.btnAddExpense.Size = new System.Drawing.Size(102, 33);
+            this.btnAddExpense.TabIndex = 14;
+            this.btnAddExpense.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnAddExpense.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnAddExpense.TextMarginLeft = 0;
+            this.btnAddExpense.TextPadding = new System.Windows.Forms.Padding(0);
+            this.btnAddExpense.UseDefaultRadiusAndThickness = true;
+            this.btnAddExpense.Click += new System.EventHandler(this.btnAddExpense_Click);
+            // 
             // SalesAndExpensesPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 636);
+            this.Controls.Add(this.btnAddExpense);
             this.Controls.Add(this.cmbExpensesFilter);
             this.Controls.Add(this.dtgExpenses);
             this.Controls.Add(this.bunifuLabel4);
@@ -344,6 +437,8 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 btnAddExpense;
 
         private Bunifu.UI.WinForms.BunifuDropdown cmbExpensesFilter;
 

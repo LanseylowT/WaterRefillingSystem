@@ -141,6 +141,17 @@ namespace WaterRefillingSystem.NewViews
             }
         }
 
-        
+
+        private void btnAddExpense_Click(object sender, EventArgs e)
+        {
+            AddExpensePage addExpensePage = new AddExpensePage();
+            var result = addExpensePage.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                // Refresh the data grid
+                cmbExpensesFilter_SelectedIndexChanged(sender, e);
+            }
+        }
     }
 }
