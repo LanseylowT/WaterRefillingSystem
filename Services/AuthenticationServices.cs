@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using WaterRefillingSystem.Models;
 
 
 namespace WaterRefillingSystem.Services
@@ -11,15 +12,15 @@ namespace WaterRefillingSystem.Services
     {
         private readonly string _connectionString;
 
-        public AuthenticationServices()
+        public AuthenticationServices(string connectionString)
         {
-            _connectionString = "Server=localhost;Database=waterrefilling_system;User ID=root;Password=Lansilot@123;";
+            _connectionString = connectionString;
         }
 
         // Method to sign up (register a new user using stored procedure)
-        public async Task SignUp(string username, string password, string role)
+        public async Task SignUp(UserAccounts userAccounts)
         {
-            string passwordHash = HashPassword(password);
+            string passwordHash = HashPassword(userAccounts.PasswordHash);
 
             using (MySqlConnection conn = new MySqlConnection(_connectionString))
             {
@@ -27,9 +28,9 @@ namespace WaterRefillingSystem.Services
                 using (MySqlCommand cmd = new MySqlCommand("AddUserAccount", conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("p_username", username);
+                    cmd.Parameters.AddWithValue("p_username", userAccounts.Username);
                     cmd.Parameters.AddWithValue("p_password_hash", passwordHash);
-                    cmd.Parameters.AddWithValue("p_role", role);
+                    cmd.Parameters.AddWithValue("p_role", userAccounts.Role);
                     await cmd.ExecuteNonQueryAsync();
                 }
             }

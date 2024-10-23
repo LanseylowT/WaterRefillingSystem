@@ -20,7 +20,7 @@ namespace WaterRefilling_Console
             Customer customer = new Customer();
             _customerRepository = new CustomerRepository("Server=localhost;Database=waterrefilling_system;User ID=root;Password=Lansilot@123;");
             _orderRepository = new OrderRepository(Commons.ConnectionString);
-            AuthenticationServices service = new AuthenticationServices();
+            AuthenticationServices service = new AuthenticationServices(Commons.ConnectionString);
             // Console.WriteLine(service.HashPassword("hashed_password_two"));
             OrderRepositoryTest orderTest = new OrderRepositoryTest();
             CustomerRepositoryTest customerTest = new CustomerRepositoryTest();

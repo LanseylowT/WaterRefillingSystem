@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using WaterRefillingSystem.Data;
 using WaterRefillingSystem.Models;
 
 namespace WaterRefillingSystem.Repository
@@ -74,5 +76,35 @@ namespace WaterRefillingSystem.Repository
                 {
                     new MySqlParameter("p_customer_id", customerId)
                 });
+        
+        public Task<List<Sales>> GetSalesByDateFilter(string filterBy) =>
+            GetAllWithParamsAsync("GetSalesByDateFilter",
+                new[]
+                {
+                    new MySqlParameter("p_filter", filterBy)
+                });
+        
+        public async Task<decimal> GetTotalSalesAsync()
+        {
+            using (MySqlConnection conn = new MySqlConnection(Commons.ConnectionString))
+            {
+                await conn.OpenAsync();
+
+                using (MySqlCommand cmd = new MySqlCommand("GetTotalSales", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (MySqlDataReader reader = (MySqlDataReader)await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            // Read the total_sales result from the stored procedure
+                            return Convert.ToDecimal(reader["total_sales"]);
+                        }
+                    }
+                }
+            }
+            return 0; // Return 0 if no sales are found
+        }
     }
 }

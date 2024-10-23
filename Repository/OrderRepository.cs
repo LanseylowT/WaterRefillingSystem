@@ -136,6 +136,8 @@ namespace WaterRefillingSystem.Repository
                 });
 
         
+
+        
         // Get the latest auto_increment from Orders table
         public async Task<int> GetLatestAutoIncrementFromOrders()
         {
@@ -160,6 +162,8 @@ namespace WaterRefillingSystem.Repository
             }
             return -1;
         }
+        
+        
 
         // Update a payment status after paying for the order
         public async Task UpdatePaymentStatusAsyncSP(int orderId, int statusId)

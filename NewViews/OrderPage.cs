@@ -1,13 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WaterRefillingSystem.Data;
 using WaterRefillingSystem.Models;
 using WaterRefillingSystem.Repository;
 
-namespace WaterRefillingSystem.Views
+namespace WaterRefillingSystem.NewViews
 {
-    public partial class OrderTest : Form
+    public partial class OrderPage : Form
     {
         private Customer Customer { get; set; }
         private DataGridViewRow _selectedRow;
@@ -19,8 +25,11 @@ namespace WaterRefillingSystem.Views
         private readonly PaymentStatusRepository _paymentStatusRepository;
         private readonly PaymentRepository _paymentRepository;
         private readonly SalesRepository _salesRepository;
+        private readonly GallonInventoryRepository _gallonInventoryRepository;
         private int OrderId;
-        public OrderTest(Customer customer)
+        private Panel _pnlMain;
+
+        public OrderPage(Customer customer, Panel panel)
         {
             InitializeComponent();
 
@@ -32,30 +41,10 @@ namespace WaterRefillingSystem.Views
             _paymentRepository = new PaymentRepository(Commons.ConnectionString);
             _paymentStatusRepository = new PaymentStatusRepository(Commons.ConnectionString);
             _salesRepository = new SalesRepository(Commons.ConnectionString);
-            DisplayCustomerDetails();
-        }
-        
-        // Method to display customer details in the OrderForm
-        private void DisplayCustomerDetails()
-        {
-            txtCustomerName.Text = Customer.Name;
-            txtCustomerId.Text = Customer.CustomerId.ToString();
-            txtCustomerContact.Text = Customer.Contact;
-            txtIsDealer.Text = Customer.IsDealer ? "Dealer" : "Customer";
-            txtCustomerAddress.Text = Customer.Address;
+            _gallonInventoryRepository = new GallonInventoryRepository(Commons.ConnectionString);
         }
 
-        private void txtCustomerContact_TextChanged(object sender, System.EventArgs e)
-        {
-
-        }
-
-        private void txtIsDealer_TextChanged(object sender, System.EventArgs e)
-        {
-
-        }
-
-        private async void btnOrder_Click(object sender, System.EventArgs e)
+        private async void btnAddToCart_Click(object sender, EventArgs e)
         {
             var order = new Order();
             if (Orders == null)
@@ -75,12 +64,13 @@ namespace WaterRefillingSystem.Views
                         break;
 
                     case "Buy":
-                        serviceOption = 2;
+                        serviceOption = 3;
                         break;
                 }
+
                 int ownGallons = Convert.ToInt32(cmbOwnGallon.SelectedItem.ToString());
                 int borrowedGallons = Convert.ToInt32(cmbBorrowedGallon.SelectedItem.ToString());
-                
+
                 order = new Order
                 {
                     CustomerId = Customer.CustomerId,
@@ -95,9 +85,71 @@ namespace WaterRefillingSystem.Views
                 order.TotalPrice = CalculateTotalPrice(order);
 
                 // This is only if the order is new and not from the Cart/Order not paid
-                // await _orderRepository.AddOrderAsyncSP(order);
+                await _orderRepository.AddOrderAsyncSP(order);
                 MessageBox.Show("New Order added successfully!");
-            } 
+                DisplayOrdersInDataGrid();
+            }
+        }
+
+        private async void btnOrder_Click(object sender, EventArgs e)
+        {
+            var order = new Order();
+            var gallonInventory = new GallonInventory();
+
+            if (Orders == null)
+            {
+                // Order is new
+                int itemType = cmbItemTitle.SelectedItem.ToString() == "Round Container" ? 1 : 2;
+                int serviceOption = 0;
+
+                switch (cmbServiceOption.SelectedItem.ToString())
+                {
+                    case "Deliver":
+                        serviceOption = 1;
+                        break;
+
+                    case "Pick-up":
+                        serviceOption = 2;
+                        break;
+
+                    case "Buy":
+                        serviceOption = 3;
+                        break;
+                }
+
+                int ownGallons = Convert.ToInt32(cmbOwnGallon.SelectedItem.ToString());
+                int borrowedGallons = Convert.ToInt32(cmbBorrowedGallon.SelectedItem.ToString());
+
+                order = new Order
+                {
+                    CustomerId = Customer.CustomerId,
+                    ItemId = itemType,
+                    ServiceId = serviceOption,
+                    OwnGallons = ownGallons,
+                    BorrowedGallons = borrowedGallons,
+                    PaymentStatusId = 2,
+                    Date = DateTime.Now,
+                };
+
+                gallonInventory = new GallonInventory
+                {
+                    CustomerId = Customer.CustomerId,
+                    OwnedGallons = ownGallons,
+                    BorrowedGallons = borrowedGallons,
+                };
+
+                order.TotalPrice = CalculateTotalPrice(order);
+
+                // This is only if the order is new and not from the Cart/Order not paid
+                await _orderRepository.AddOrderAsyncSP(order);
+                await _gallonInventoryRepository.AddInventoryAsyncSP(gallonInventory);
+                MessageBox.Show("New Order added successfully!");
+            }
+            else if (Orders.PaymentStatusId == 1)
+            {
+                MessageBox.Show("Order is already paid!");
+                return;
+            }
             else if (Orders != null && _selectedRow != null)
             {
                 order = Orders;
@@ -106,8 +158,9 @@ namespace WaterRefillingSystem.Views
             {
                 MessageBox.Show("Please select a customer from the list first!");
             }
+
             // TODO: Get the latest auto_increment id from table orders
-            PaymentTest payment = new PaymentTest(order);
+            PaymentPage payment = new PaymentPage(order);
             Hide();
             var result = payment.ShowDialog();
 
@@ -131,41 +184,36 @@ namespace WaterRefillingSystem.Views
 
                 // Add
                 await _salesRepository.AddSaleAsyncSP(sales);
-                
             }
         }
 
-        private void UpdateOrderStatus()
+        private async void dtgOrderQueue_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
-        }
-
-        private decimal CalculateTotalPrice(Order order)
-        {
-            // If Slim Container, price is 25 else 30, multiplied if own gallons > 0 or if borrowed gallons > 0 else multiplied by both
-            // There is an additional charge of 10 if the service option is Deliver
-            // Base price: 25 for Slim Container (ItemId 1), otherwise 30.
-            decimal pricePerGallon = (order.ItemId == 1) ? 25m : 30m;
-
-            // Calculate total gallons (OwnGallons + BorrowedGallons)
-            decimal totalGallons = order.OwnGallons + order.BorrowedGallons;
-
-            // Multiply base price by the total gallons
-            decimal totalPrice = pricePerGallon * totalGallons;
-
-            // Add additional charge of 10 if ServiceId is 1 (Deliver)
-            if (order.ServiceId == 1)
+            if (e.RowIndex >= 0)
             {
-                totalPrice += 10m;
+                _selectedRow = dtgOrderQueue.Rows[e.RowIndex];
+
+                var id = Convert.ToInt32(_selectedRow.Cells["OrderId"].Value);
+                Orders = await _orderRepository.GetOrderByOrderIdAsyncSP(id);
+                Customer = await _customerRepository.GetCustomerByIdAsyncSP(Orders.CustomerId);
             }
-
-            return totalPrice;
         }
 
-        private bool ValidateFormInputs()
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            return false;
+            Orders = null;
+            _selectedRow = null;
         }
+
+        private void OrderPage_Load(object sender, EventArgs e)
+        {
+            SetupDataGrid();
+            DisplayOrdersInDataGrid();
+            DisplayCustomerDetails();
+            cmbBorrowedGallon.SelectedIndex = 0;
+            cmbOwnGallon.SelectedIndex = 0;
+        }
+
 
         private async void DisplayOrdersInDataGrid()
         {
@@ -179,18 +227,20 @@ namespace WaterRefillingSystem.Views
                 {
                     foreach (var order in orders)
                     {
+                        // The order is already paid
                         var customer = await _customerRepository.GetCustomerByIdAsyncSP(order.CustomerId);
+                        var gallonInventory = await _gallonInventoryRepository.GetInventoryByCustomerIdAsyncSP(order.CustomerId);
                         dtgOrderQueue.Rows.Add(
                             order.OrderId,
                             customer.Name,
                             order.ItemId == 1 ? "Slim Container" : "Round Container",
                             order.ServiceId == 1 ? "Deliver" : "Buy",
-                            order.OwnGallons,
-                            order.BorrowedGallons,
+                            gallonInventory.OwnedGallons,
+                            gallonInventory.BorrowedGallons,
                             order.TotalPrice,
-                            order.PaymentStatusId == 1 ? "Pending" : "Paid",
+                            order.PaymentStatusId == 1 ? "Paid" : "Pending",
                             order.Date
-                            );
+                        );
                     }
                     //dtgOrderQueue.DataSource = orders;
                 }
@@ -222,38 +272,35 @@ namespace WaterRefillingSystem.Views
             dtgOrderQueue.Columns.Add("Date", "Date");
         }
 
-
-        private async void dtgOrderQueue_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DisplayCustomerDetails()
         {
-            if (e.RowIndex >= 0)
+            txtCustomerName.Text = Customer.Name;
+            txtCustomerId.Text = Customer.CustomerId.ToString();
+            txtCustomerContact.Text = Customer.Contact;
+            txtIsDealer.Text = Customer.IsDealer ? "Dealer" : "Customer";
+            txtCustomerAddress.Text = Customer.Address;
+        }
+
+        private decimal CalculateTotalPrice(Order order)
+        {
+            // If Slim Container, price is 25 else 30, multiplied if own gallons > 0 or if borrowed gallons > 0 else multiplied by both
+            // There is an additional charge of 10 if the service option is Deliver
+            // Base price: 25 for Slim Container (ItemId 1), otherwise 30.
+            decimal pricePerGallon = (order.ItemId == 1) ? 25m : 30m;
+
+            // Calculate total gallons (OwnGallons + BorrowedGallons)
+            decimal totalGallons = order.OwnGallons + order.BorrowedGallons;
+
+            // Multiply base price by the total gallons
+            decimal totalPrice = pricePerGallon * totalGallons;
+
+            // Add additional charge of 10 if ServiceId is 1 (Deliver)
+            if (order.ServiceId == 1)
             {
-                _selectedRow = dtgOrderQueue.Rows[e.RowIndex];
-
-                var id = Convert.ToInt32(_selectedRow.Cells["OrderId"].Value);
-                Orders = await _orderRepository.GetOrderByOrderIdAsyncSP(id);
-                Customer = await _customerRepository.GetCustomerByIdAsyncSP(Orders.CustomerId);
+                totalPrice += 10m;
             }
-        }
 
-        private async void OrderTest_Load(object sender, EventArgs e)
-        {
-            //MessageBox.Show($"{await _orderRepository.GetLatestAutoIncrementFromOrders()}");
-            SetupDataGrid();
-            DisplayOrdersInDataGrid();
-            // Orders = new Order();
-            cmbBorrowedGallon.SelectedIndex = 0;
-            cmbOwnGallon.SelectedIndex = 0;
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Orders = null;
-            _selectedRow = null;
-        }
-
-        private void btnAddToCart_Click(object sender, EventArgs e)
-        {
-            throw new System.NotImplementedException();
+            return totalPrice;
         }
     }
 }

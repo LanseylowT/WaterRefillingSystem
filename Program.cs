@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WaterRefillingSystem.NewViews;
 using WaterRefillingSystem.Views;
+using Dashboard = WaterRefillingSystem.Views.Dashboard;
 
 namespace WaterRefillingSystem
 {
@@ -17,7 +19,7 @@ namespace WaterRefillingSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DashboardTest()); 
+            Application.Run(new LoginPage());
         }
     }
 }

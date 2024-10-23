@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using WaterRefillingSystem.Data;
 using WaterRefillingSystem.Models;
 
 // TODO: [DONE] Test Authentication and CRUD Operations for UserAccount
@@ -61,5 +64,36 @@ namespace WaterRefillingSystem.Repository
                 {
                     new MySqlParameter("p_user_id", userId)
                 });
+        
+        public async Task<UserAccounts> GetUserByUsernameAsync(string username)
+        {
+            using (MySqlConnection conn = new MySqlConnection(Commons.ConnectionString))
+            {
+                await conn.OpenAsync();
+
+                using (MySqlCommand cmd = new MySqlCommand("GetUserByUsername", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Add username as a parameter
+                    cmd.Parameters.AddWithValue("p_username", username);
+
+                    using (MySqlDataReader reader = (MySqlDataReader) await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            // Map the result to a User object
+                            return new UserAccounts
+                            {
+                                UserId = Convert.ToInt32(reader["user_id"]),
+                                Username = reader["username"].ToString(),
+                                Role = reader["role"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+            return null; // Return null if no user is found
+        }
     }
 }

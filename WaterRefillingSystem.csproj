@@ -161,6 +161,18 @@
     <Compile Include="Models\Sales.cs" />
     <Compile Include="Models\ServiceOption.cs" />
     <Compile Include="Models\UserAccounts.cs" />
+    <Compile Include="NewViews\AddExpensePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewViews\AddExpensePage.Designer.cs">
+      <DependentUpon>AddExpensePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewViews\CustomerPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewViews\CustomerPage.Designer.cs">
+      <DependentUpon>CustomerPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewViews\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +184,60 @@
     </Compile>
     <Compile Include="NewViews\Dashboard2.Designer.cs">
       <DependentUpon>Dashboard2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewViews\EditCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewViews\EditCustomer.Designer.cs">
+      <DependentUpon>EditCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewViews\HomePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewViews\HomePage.Designer.cs">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewViews\LoginPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewViews\LoginPage.Designer.cs">
+      <DependentUpon>LoginPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewViews\NewCustomerPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewViews\NewCustomerPage.Designer.cs">
+      <DependentUpon>NewCustomerPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewViews\OrderPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewViews\OrderPage.Designer.cs">
+      <DependentUpon>OrderPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewViews\PaymentPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewViews\PaymentPage.Designer.cs">
+      <DependentUpon>PaymentPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewViews\RegisterPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewViews\RegisterPage.Designer.cs">
+      <DependentUpon>RegisterPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewViews\ReturnGallonsPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewViews\ReturnGallonsPage.Designer.cs">
+      <DependentUpon>ReturnGallonsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewViews\SalesAndExpensesPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewViews\SalesAndExpensesPage.Designer.cs">
+      <DependentUpon>SalesAndExpensesPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -253,11 +319,44 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewViews\AddExpensePage.resx">
+      <DependentUpon>AddExpensePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewViews\CustomerPage.resx">
+      <DependentUpon>CustomerPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewViews\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewViews\Dashboard2.resx">
       <DependentUpon>Dashboard2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewViews\EditCustomer.resx">
+      <DependentUpon>EditCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewViews\HomePage.resx">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewViews\LoginPage.resx">
+      <DependentUpon>LoginPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewViews\NewCustomerPage.resx">
+      <DependentUpon>NewCustomerPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewViews\OrderPage.resx">
+      <DependentUpon>OrderPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewViews\PaymentPage.resx">
+      <DependentUpon>PaymentPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewViews\RegisterPage.resx">
+      <DependentUpon>RegisterPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewViews\ReturnGallonsPage.resx">
+      <DependentUpon>ReturnGallonsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewViews\SalesAndExpensesPage.resx">
+      <DependentUpon>SalesAndExpensesPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -318,10 +417,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\water_drop.png" />
+    <Content Include="Resources\water_drop1.png" />
+    <Content Include="Resources\water_gallon.png" />
     <EmbeddedResource Include="Resources\Icons\close.png" />
     <EmbeddedResource Include="Resources\Icons\maximize.png" />
     <EmbeddedResource Include="Resources\Icons\minimize.png" />
     <EmbeddedResource Include="Resources\Icons\screw.png" />
+    <Content Include="Assets\water_gallon.png" />
     <Content Include="Resources\bell1.png" />
     <Content Include="Resources\close.png" />
     <Content Include="Resources\bell.png" />
@@ -339,7 +442,7 @@
     <Content Include="Resources\SVG\Login.svg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\" />
+    <Folder Include="Assets\Icons\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

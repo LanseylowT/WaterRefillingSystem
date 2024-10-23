@@ -58,13 +58,19 @@ namespace WaterRefillingSystem.Repository
                     new MySqlParameter("p_inventory_id", inventoryId)
                 });
         
+        public Task UpdateBorrowedGallon(GallonInventory inventory) =>
+            UpdateWithParamsAsync("UpdateBorrowedGallons", new[]
+            {
+                new MySqlParameter("p_customer_id", inventory.CustomerId),
+                new MySqlParameter("p_new_borrowed_gallon", inventory.BorrowedGallons)
+            });
 
         // Using stored procedure for fetching gallon inventory by customer ID
         public Task<GallonInventory> GetInventoryByCustomerIdAsyncSP(int customerId) =>
             GetByIdWithParamsAsync("GetInventoryByCustomerId", 
                 new[]
                 {
-                    new MySqlParameter("@CustomerId", customerId)
+                    new MySqlParameter("p_customer_id", customerId),
                 });
     }
 }
