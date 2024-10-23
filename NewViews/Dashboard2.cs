@@ -33,25 +33,30 @@ namespace WaterRefillingSystem.NewViews
             LoadForm(new HomePage(pnlMain));
             // Load all of the labels from the shit
             LoadLabels();
+            LoadCredentialLabels();
         }
         
         private void btnHome_Click(object sender, EventArgs e)
         {
+            LoadLabels();
             LoadForm(new HomePage(pnlMain));
         }
 
         private void btnNewCustomer_Click(object sender, EventArgs e)
         {
+            LoadLabels();
             LoadForm(new NewCustomerPage(pnlMain));
         }
 
         private void btnSalesAndExpenses_Click(object sender, EventArgs e)
         {
+            LoadLabels();
             LoadForm(new SalesAndExpensesPage());
         }
         
         private void btnReturnGallon_Click(object sender, EventArgs e)
         {
+            LoadLabels();
             LoadForm(new ReturnGallonsPage(pnlMain));
         }
         
@@ -91,9 +96,12 @@ namespace WaterRefillingSystem.NewViews
             {
                 lblTotalExpenses.Text = 0.ToString("C", System.Globalization.CultureInfo.CurrentCulture);
             }
+        }
+
+        private void LoadCredentialLabels()
+        {
             lblUsername.Text = char.ToUpper(UserAccounts.Username[0]) + UserAccounts.Username.Substring(1).ToLower();
             lblRole.Text = char.ToUpper(UserAccounts.Role[0]) + UserAccounts.Role.Substring(1).ToLower();
-            // MessageBox.Show($"Total Sales: {lblTotalSales.Text} \nTotal Expenses: {lblTotalExpenses.Text}");
         }
     }
 }
