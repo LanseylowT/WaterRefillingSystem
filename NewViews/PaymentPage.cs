@@ -60,7 +60,6 @@ namespace WaterRefillingSystem.NewViews
                 MessageBox.Show("Payment successfully recorded!");
                 Dashboard2 dashboard2 = new Dashboard2();
                 dashboard2.LoadLabels();
-                LoadForm(new HomePage(_pnlMain));
                 Close();
             } 
             else

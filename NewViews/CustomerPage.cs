@@ -117,7 +117,7 @@ namespace WaterRefillingSystem.NewViews
         {
             _debounceTimer.Stop(); // Stop the timer so that it doesn't fire again
 
-            string filterBy = cmbFilterType.SelectedItem.ToString();
+            string filterBy = cmbFilterType2.SelectedItem.ToString();
             string searchValue = tbSearchField.Text;
             
             // Call the method to load the filtered data
