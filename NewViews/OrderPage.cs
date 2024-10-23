@@ -42,6 +42,7 @@ namespace WaterRefillingSystem.NewViews
             _paymentStatusRepository = new PaymentStatusRepository(Commons.ConnectionString);
             _salesRepository = new SalesRepository(Commons.ConnectionString);
             _gallonInventoryRepository = new GallonInventoryRepository(Commons.ConnectionString);
+            _pnlMain = panel;
         }
 
         private async void btnAddToCart_Click(object sender, EventArgs e)
@@ -160,7 +161,7 @@ namespace WaterRefillingSystem.NewViews
             }
 
             // TODO: Get the latest auto_increment id from table orders
-            PaymentPage payment = new PaymentPage(order);
+            PaymentPage payment = new PaymentPage(order, _pnlMain);
             Hide();
             var result = payment.ShowDialog();
 

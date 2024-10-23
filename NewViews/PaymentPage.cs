@@ -20,13 +20,14 @@ namespace WaterRefillingSystem.NewViews
         private OrderRepository _orderRepository;
         private PaymentRepository _paymentRepository;
         private Panel _pnlMain;
-        public PaymentPage(Order order)
+        public PaymentPage(Order order, Panel panel)
         {
             InitializeComponent();
             Order = order;
             _orderRepository = new OrderRepository(Commons.ConnectionString);
             _paymentRepository = new PaymentRepository(Commons.ConnectionString);
             payment = new Payment();
+            _pnlMain = panel;
         }
         
         // --------------------- Event Handlers ---------------------//
